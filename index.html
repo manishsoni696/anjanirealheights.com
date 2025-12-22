@@ -1,6 +1,5 @@
 <!-- =========================
 FILE: index.html
-Modern Lead-Gen Static Site
 ========================= -->
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +9,7 @@ Modern Lead-Gen Static Site
 
   <!-- Primary SEO -->
   <title>Anjani Real Heights | Trusted Real Estate Consultants in Hisar</title>
-  <meta name="description" content="Anjani Real Heights (Since 1989) — Verified plots, houses & investment property guidance in Hisar. Transparent deals, registry support & local expertise. Call/WhatsApp for free consultation." />
+  <meta name="description" content="Anjani Real Heights (Since 1989) — Verified plots, houses & investment guidance in Hisar. Transparent deals, registry support & local expertise. Call/WhatsApp for free consultation." />
   <meta name="keywords" content="Real Estate Hisar, Property Dealer Hisar, Sector 14 Hisar, Sector 33 Hisar, HSVP HUDA Hisar, Plots in Hisar, Houses in Hisar, Property Investment Hisar" />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://anjanirealheights.com/" />
@@ -22,8 +21,11 @@ Modern Lead-Gen Static Site
   <meta property="og:url" content="https://anjanirealheights.com/" />
   <meta property="og:image" content="logo.png" />
 
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.png" type="image/png" />
+  <!-- Favicon (Fix) -->
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <meta name="theme-color" content="#0A2A43" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -66,7 +68,9 @@ Modern Lead-Gen Static Site
   <header class="header" id="top">
     <div class="container header__inner">
       <a class="brand" href="#top" aria-label="Anjani Real Heights Home">
-        <img class="brand__logo" src="logo.png" alt="Anjani Real Heights logo" />
+        <span class="logo-wrap">
+          <img class="brand__logo" src="logo.png" alt="Anjani Real Heights logo" />
+        </span>
       </a>
 
       <nav class="nav" aria-label="Primary navigation">
@@ -136,7 +140,6 @@ Modern Lead-Gen Static Site
         </div>
 
         <div class="hero__card">
-          <!-- Office photo placeholder (upload tomorrow) -->
           <figure class="mediaCard">
             <img src="assets/images/office-front.jpg" alt="Anjani Real Heights office front (upload soon)" />
             <figcaption>
@@ -165,9 +168,7 @@ Modern Lead-Gen Static Site
       <div class="hero__bgGlow" aria-hidden="true"></div>
     </section>
 
-    <!-- =========================
-    WHY CHOOSE US
-    ========================= -->
+    <!-- WHY CHOOSE US -->
     <section class="section" id="why">
       <div class="container">
         <div class="sectionHead">
@@ -203,9 +204,7 @@ Modern Lead-Gen Static Site
       </div>
     </section>
 
-    <!-- =========================
-    LEAD CAPTURE (EmailJS + WhatsApp Backup)
-    ========================= -->
+    <!-- LEAD CAPTURE -->
     <section class="section section--dark" id="lead">
       <div class="container leadGrid">
         <div class="leadCopy">
@@ -248,27 +247,21 @@ Modern Lead-Gen Static Site
             <textarea id="msg" name="message" rows="3" placeholder="Area / budget / timeline…"></textarea>
           </div>
 
-          <button class="btn btn--primary btn--full" type="submit">
-            Get Free Consultation
-          </button>
+          <button class="btn btn--primary btn--full" type="submit">Get Free Consultation</button>
 
-          <p class="formNote">
-            Prefer WhatsApp? <a href="#" id="waFallback">Send enquiry on WhatsApp</a>
-          </p>
+          <p class="formNote">Prefer WhatsApp? <a href="#" id="waFallback">Send enquiry on WhatsApp</a></p>
 
           <div class="formStatus" id="formStatus" aria-live="polite"></div>
         </form>
       </div>
     </section>
 
-    <!-- =========================
-    OWNERS / TRUST STORY
-    ========================= -->
+    <!-- OWNERS -->
     <section class="section" id="owners">
       <div class="container">
         <div class="sectionHead">
           <h2>Meet the People Behind the Trust</h2>
-          <p>Second-generation real estate consultancy with a legacy built in Hisar since 1989.</p>
+          <p>Second-generation consultancy with a legacy built in Hisar since 1989.</p>
         </div>
 
         <div class="ownerGrid">
@@ -299,14 +292,12 @@ Modern Lead-Gen Static Site
       </div>
     </section>
 
-    <!-- =========================
-    DEALING AREAS
-    ========================= -->
+    <!-- AREAS -->
     <section class="section section--soft" id="areas">
       <div class="container">
         <div class="sectionHead">
           <h2>Dealing Areas</h2>
-          <p>Focused coverage across key HSVP (HUDA) sectors and major private colonies in Hisar.</p>
+          <p>Coverage across key HSVP (HUDA) sectors and major private colonies in Hisar.</p>
         </div>
 
         <div class="areaChips">
@@ -321,9 +312,7 @@ Modern Lead-Gen Static Site
       </div>
     </section>
 
-    <!-- =========================
-    MAP DOWNLOADS + MAP DEMAND
-    ========================= -->
+    <!-- MAPS -->
     <section class="section" id="maps">
       <div class="container">
         <div class="sectionHead">
@@ -380,9 +369,7 @@ Modern Lead-Gen Static Site
       </div>
     </section>
 
-    <!-- =========================
-    CONTACT + MAP EMBED
-    ========================= -->
+    <!-- CONTACT -->
     <section class="section" id="contact">
       <div class="container contactGrid">
         <div class="contactCard">
@@ -414,9 +401,7 @@ Modern Lead-Gen Static Site
     </section>
   </main>
 
-  <!-- =========================
-  FOOTER
-  ========================= -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__left">
@@ -438,11 +423,9 @@ Modern Lead-Gen Static Site
   </footer>
 
   <!-- Floating WhatsApp -->
-  <a class="waFloat" href="https://wa.me/919050040129" target="_blank" rel="noopener" aria-label="WhatsApp floating button">
-    <span>💬</span>
-  </a>
+  <a class="waFloat" href="https://wa.me/919050040129" target="_blank" rel="noopener" aria-label="WhatsApp floating button"><span>💬</span></a>
 
-  <!-- EmailJS (Recommended for Static) -->
+  <!-- EmailJS -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="script.js"></script>
 </body>
