@@ -55,24 +55,26 @@ if (waFallback) {
 }
 
 /* =========================
-EmailJS Setup (RECOMMENDED)
-1) https://www.emailjs.com/ -> Create account
-2) Add Email Service (Gmail/Zoho/SMTP)
-3) Create Email Template
-4) Paste your IDs below:
-   SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY
+EMAILJS CONFIG (PASTE YOUR REAL VALUES)
 ========================= */
-
 const EMAILJS_CONFIG = {
-  SERVICE_ID: "YOUR_SERVICE_ID",
-  TEMPLATE_ID: "YOUR_TEMPLATE_ID",
-  PUBLIC_KEY: "YOUR_PUBLIC_KEY"
+  SERVICE_ID: "PASTE_SERVICE_ID_HERE",
+  TEMPLATE_ID: "PASTE_TEMPLATE_ID_HERE",
+  PUBLIC_KEY: "PASTE_PUBLIC_KEY_HERE"
 };
 
 function setStatus(el, text, ok=true) {
   if (!el) return;
   el.textContent = text;
   el.style.color = ok ? "rgba(255,255,255,.92)" : "#ffb4b4";
+}
+
+function emailJsNotConfigured() {
+  return (
+    !EMAILJS_CONFIG.SERVICE_ID || EMAILJS_CONFIG.SERVICE_ID.includes("PASTE_") ||
+    !EMAILJS_CONFIG.TEMPLATE_ID || EMAILJS_CONFIG.TEMPLATE_ID.includes("PASTE_") ||
+    !EMAILJS_CONFIG.PUBLIC_KEY || EMAILJS_CONFIG.PUBLIC_KEY.includes("PASTE_")
+  );
 }
 
 /* Enquiry Form */
@@ -93,12 +95,7 @@ if (enquiryForm) {
       return;
     }
 
-    // If EmailJS not configured, fallback to WhatsApp
-    if (
-      EMAILJS_CONFIG.SERVICE_ID.startsWith("YOUR_") ||
-      EMAILJS_CONFIG.TEMPLATE_ID.startsWith("YOUR_") ||
-      EMAILJS_CONFIG.PUBLIC_KEY.startsWith("YOUR_")
-    ) {
+    if (emailJsNotConfigured()) {
       setStatus(formStatus, "Email service not configured yet. Opening WhatsApp…", true);
       window.open(buildWAFromForm(), "_blank", "noopener");
       return;
@@ -106,7 +103,6 @@ if (enquiryForm) {
 
     try {
       emailjs.init({ publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
-
       setStatus(formStatus, "Sending enquiry…", true);
 
       const payload = {
@@ -124,13 +120,13 @@ if (enquiryForm) {
       setStatus(formStatus, "✅ Thank you! We received your enquiry. We will contact you shortly.", true);
       enquiryForm.reset();
     } catch (err) {
-      setStatus(formStatus, "❌ Failed to send email. Opening WhatsApp as backup…", false);
+      setStatus(formStatus, "❌ Email failed. Opening WhatsApp as backup…", false);
       window.open(buildWAFromForm(), "_blank", "noopener");
     }
   });
 }
 
-/* Map Request Form (EmailJS / WhatsApp fallback) */
+/* Map Request Form */
 const mapRequestForm = document.getElementById("mapRequestForm");
 const mapStatus = document.getElementById("mapStatus");
 
@@ -142,7 +138,7 @@ if (mapRequestForm) {
     const phone = mapRequestForm.querySelector('input[name="phone"]').value.trim();
 
     if (!/^\d{10}$/.test(phone)) {
-      if (mapStatus) { mapStatus.textContent = "Please enter a valid 10-digit phone number."; }
+      if (mapStatus) mapStatus.textContent = "Please enter a valid 10-digit phone number.";
       return;
     }
 
@@ -153,13 +149,8 @@ Phone: ${phone}`;
 
     const waLink = `https://wa.me/${PHONE_WA}?text=${encodeURIComponent(waText)}`;
 
-    // EmailJS not configured => WhatsApp fallback
-    if (
-      EMAILJS_CONFIG.SERVICE_ID.startsWith("YOUR_") ||
-      EMAILJS_CONFIG.TEMPLATE_ID.startsWith("YOUR_") ||
-      EMAILJS_CONFIG.PUBLIC_KEY.startsWith("YOUR_")
-    ) {
-      if (mapStatus) { mapStatus.textContent = "Opening WhatsApp to request the map…"; }
+    if (emailJsNotConfigured()) {
+      if (mapStatus) mapStatus.textContent = "Opening WhatsApp to request the map…";
       window.open(waLink, "_blank", "noopener");
       mapRequestForm.reset();
       return;
@@ -167,8 +158,7 @@ Phone: ${phone}`;
 
     try {
       emailjs.init({ publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
-
-      if (mapStatus) { mapStatus.textContent = "Sending request…"; }
+      if (mapStatus) mapStatus.textContent = "Sending request…";
 
       const payload = {
         to_email: EMAIL_TO,
@@ -182,10 +172,10 @@ Phone: ${phone}`;
 
       await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, payload);
 
-      if (mapStatus) { mapStatus.textContent = "✅ Request received! We’ll share the map soon."; }
+      if (mapStatus) mapStatus.textContent = "✅ Request received! We’ll share the map soon.";
       mapRequestForm.reset();
     } catch (err) {
-      if (mapStatus) { mapStatus.textContent = "Email failed. Opening WhatsApp…"; }
+      if (mapStatus) mapStatus.textContent = "Email failed. Opening WhatsApp…";
       window.open(waLink, "_blank", "noopener");
     }
   });
