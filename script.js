@@ -1,9 +1,6 @@
 /* =========================
 FILE: script.js
-EmailJS lead capture + WhatsApp fallback
 ========================= */
-
-const PHONE_E164 = "+919050040129";
 const PHONE_WA = "919050040129";
 const EMAIL_TO = "contact@anjanirealheights.com";
 
@@ -30,7 +27,7 @@ if (navToggle && mobileNav) {
   });
 }
 
-/* WhatsApp fallback link */
+/* WhatsApp fallback builder */
 const waFallback = document.getElementById("waFallback");
 function buildWAFromForm() {
   const name = (document.getElementById("name")?.value || "").trim();
@@ -54,9 +51,7 @@ if (waFallback) {
   });
 }
 
-/* =========================
-EMAILJS CONFIG (PASTE YOUR REAL VALUES)
-========================= */
+/* EmailJS config (paste real values) */
 const EMAILJS_CONFIG = {
   SERVICE_ID: "PASTE_SERVICE_ID_HERE",
   TEMPLATE_ID: "PASTE_TEMPLATE_ID_HERE",
@@ -68,7 +63,6 @@ function setStatus(el, text, ok=true) {
   el.textContent = text;
   el.style.color = ok ? "rgba(255,255,255,.92)" : "#ffb4b4";
 }
-
 function emailJsNotConfigured() {
   return (
     !EMAILJS_CONFIG.SERVICE_ID || EMAILJS_CONFIG.SERVICE_ID.includes("PASTE_") ||
@@ -77,7 +71,6 @@ function emailJsNotConfigured() {
   );
 }
 
-/* Enquiry Form */
 const enquiryForm = document.getElementById("enquiryForm");
 const formStatus = document.getElementById("formStatus");
 
@@ -96,7 +89,7 @@ if (enquiryForm) {
     }
 
     if (emailJsNotConfigured()) {
-      setStatus(formStatus, "Email service not configured yet. Opening WhatsApp…", true);
+      setStatus(formStatus, "Email not configured yet. Opening WhatsApp…", true);
       window.open(buildWAFromForm(), "_blank", "noopener");
       return;
     }
@@ -117,66 +110,11 @@ if (enquiryForm) {
 
       await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, payload);
 
-      setStatus(formStatus, "✅ Thank you! We received your enquiry. We will contact you shortly.", true);
+      setStatus(formStatus, "✅ Thank you! We received your enquiry.", true);
       enquiryForm.reset();
     } catch (err) {
-      setStatus(formStatus, "❌ Email failed. Opening WhatsApp as backup…", false);
+      setStatus(formStatus, "❌ Email failed. Opening WhatsApp…", false);
       window.open(buildWAFromForm(), "_blank", "noopener");
-    }
-  });
-}
-
-/* Map Request Form */
-const mapRequestForm = document.getElementById("mapRequestForm");
-const mapStatus = document.getElementById("mapStatus");
-
-if (mapRequestForm) {
-  mapRequestForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const mapName = mapRequestForm.querySelector('input[name="map_name"]').value.trim();
-    const phone = mapRequestForm.querySelector('input[name="phone"]').value.trim();
-
-    if (!/^\d{10}$/.test(phone)) {
-      if (mapStatus) mapStatus.textContent = "Please enter a valid 10-digit phone number.";
-      return;
-    }
-
-    const waText =
-`Hello Anjani Real Heights,
-Map Request: ${mapName}
-Phone: ${phone}`;
-
-    const waLink = `https://wa.me/${PHONE_WA}?text=${encodeURIComponent(waText)}`;
-
-    if (emailJsNotConfigured()) {
-      if (mapStatus) mapStatus.textContent = "Opening WhatsApp to request the map…";
-      window.open(waLink, "_blank", "noopener");
-      mapRequestForm.reset();
-      return;
-    }
-
-    try {
-      emailjs.init({ publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
-      if (mapStatus) mapStatus.textContent = "Sending request…";
-
-      const payload = {
-        to_email: EMAIL_TO,
-        name: "Map Request",
-        phone,
-        requirement: "Map Request",
-        message: `Requested map: ${mapName}`,
-        source: "Website Map Request (anjanirealheights.com)",
-        timestamp: new Date().toLocaleString("en-IN")
-      };
-
-      await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, payload);
-
-      if (mapStatus) mapStatus.textContent = "✅ Request received! We’ll share the map soon.";
-      mapRequestForm.reset();
-    } catch (err) {
-      if (mapStatus) mapStatus.textContent = "Email failed. Opening WhatsApp…";
-      window.open(waLink, "_blank", "noopener");
     }
   });
 }
