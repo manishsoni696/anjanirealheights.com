@@ -1,75 +1,114 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6;
     color: #333;
+    line-height: 1.6;
 }
 
-header {
+/* HEADER */
+.header {
     background: #0b3c5d;
-    color: white;
+    color: #fff;
+    text-align: center;
     padding: 20px;
-    text-align: center;
 }
 
-nav {
+/* NAVBAR */
+.navbar {
     background: #f4f4f4;
-    padding: 10px;
     text-align: center;
+    padding: 10px;
 }
 
-nav a {
+.navbar a {
     margin: 0 15px;
     text-decoration: none;
     color: #0b3c5d;
     font-weight: bold;
 }
 
+/* HERO */
 .hero {
     background: linear-gradient(to right, #0b3c5d, #328cc1);
-    color: white;
+    color: #fff;
     padding: 60px 20px;
     text-align: center;
 }
 
-section {
-    padding: 40px 20px;
+.hero-buttons {
+    margin-top: 20px;
+}
+
+/* SECTIONS */
+.section {
     max-width: 900px;
     margin: auto;
+    padding: 40px 20px;
+}
+
+.section.light {
+    background: #f9f9f9;
 }
 
 h2 {
     color: #0b3c5d;
 }
 
-ul li {
-    margin: 10px 0;
+/* SERVICES */
+.services-list {
+    list-style: none;
+    padding: 0;
 }
 
+.services-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+/* BUTTONS */
 .btn {
     display: inline-block;
-    margin-top: 15px;
+    margin: 10px;
     padding: 12px 20px;
     background: #0b3c5d;
-    color: white;
+    color: #fff;
     text-decoration: none;
     border-radius: 5px;
 }
 
-.whatsapp {
+.whatsapp-btn {
     background: #25d366;
 }
 
-footer {
+/* FOOTER */
+.footer {
     background: #222;
     color: #ccc;
     text-align: center;
     padding: 15px;
 }
 
-/* Mobile Friendly */
+/* WHATSAPP FLOAT */
+.whatsapp-float {
+    position: fixed;
+    width: 55px;
+    height: 55px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 28px;
+    line-height: 55px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+    z-index: 1000;
+    text-decoration: none;
+}
+
+/* MOBILE */
 @media (max-width: 600px) {
-    nav a {
+    .navbar a {
         display: block;
         margin: 10px 0;
     }
