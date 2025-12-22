@@ -7,10 +7,20 @@ body {
 
 /* HEADER */
 .header {
-    background: #0b3c5d;
-    color: #fff;
+    background: #000;
     text-align: center;
-    padding: 20px;
+    padding: 25px 15px;
+}
+
+.logo {
+    max-width: 160px;
+    margin-bottom: 10px;
+}
+
+.tagline {
+    color: #ffb000;
+    font-size: 14px;
+    letter-spacing: 1px;
 }
 
 /* NAVBAR */
@@ -82,7 +92,7 @@ h2 {
 
 /* FOOTER */
 .footer {
-    background: #222;
+    background: #111;
     color: #ccc;
     text-align: center;
     padding: 15px;
@@ -111,5 +121,9 @@ h2 {
     .navbar a {
         display: block;
         margin: 10px 0;
+    }
+
+    .logo {
+        max-width: 130px;
     }
 }
