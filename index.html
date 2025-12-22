@@ -1,128 +1,449 @@
+<!-- =========================
+FILE: index.html
+Modern Lead-Gen Static Site
+========================= -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- PRIMARY SEO -->
-<title>Anjani Real Heights | Trusted Real Estate Consultant in Hisar</title>
+  <!-- Primary SEO -->
+  <title>Anjani Real Heights | Trusted Real Estate Consultants in Hisar</title>
+  <meta name="description" content="Anjani Real Heights (Since 1989) — Verified plots, houses & investment property guidance in Hisar. Transparent deals, registry support & local expertise. Call/WhatsApp for free consultation." />
+  <meta name="keywords" content="Real Estate Hisar, Property Dealer Hisar, Sector 14 Hisar, Sector 33 Hisar, HSVP HUDA Hisar, Plots in Hisar, Houses in Hisar, Property Investment Hisar" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://anjanirealheights.com/" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Anjani Real Heights is a trusted real estate consultant in Hisar with 30+ years experience. Verified plots, houses & investment properties. Call 9050040129 for free consultation.">
-<meta name="keywords" content="Real Estate Hisar, Property Dealer Hisar, Plots in Hisar, House for Sale Hisar, Property Investment Hisar">
-<meta name="author" content="Anjani Real Heights">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Anjani Real Heights | Trusted Real Estate Consultants in Hisar" />
+  <meta property="og:description" content="Verified properties • Registry support • Local market expertise • Transparent pricing. Since 1989." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://anjanirealheights.com/" />
+  <meta property="og:image" content="logo.png" />
 
-<!-- LOCAL SEO -->
-<meta name="geo.region" content="IN-HR">
-<meta name="geo.placename" content="Hisar">
-<meta name="geo.position" content="29.1492;75.7217">
-<meta name="ICBM" content="29.1492, 75.7217">
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.png" type="image/png" />
 
-<!-- OPEN GRAPH (Social Preview) -->
-<meta property="og:title" content="Anjani Real Heights | Trusted Real Estate Consultant in Hisar">
-<meta property="og:description" content="Verified property deals with transparency. 30+ years of local real estate experience in Hisar.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="logo.png">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
 
-<link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css" />
 
-<!-- FONTS -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
+  <!-- LocalBusiness Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "Anjani Real Heights",
+    "url": "https://anjanirealheights.com/",
+    "logo": "https://anjanirealheights.com/logo.png",
+    "image": "https://anjanirealheights.com/assets/images/office-front.jpg",
+    "telephone": "+91-9050040129",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "SSB-318-319 POCKET-A SECTOR 14",
+      "addressLocality": "Hisar",
+      "addressRegion": "Haryana",
+      "postalCode": "125001",
+      "addressCountry": "IN"
+    },
+    "areaServed": "Hisar, Haryana",
+    "sameAs": [
+      "https://www.facebook.com/anjanirealheights/",
+      "https://www.instagram.com/anjanirealheights?igsh=cWdzOGU2cXk2bGVi"
+    ]
+  }
+  </script>
 </head>
 
 <body>
+  <!-- =========================
+  TOP STICKY HEADER
+  ========================= -->
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a class="brand" href="#top" aria-label="Anjani Real Heights Home">
+        <img class="brand__logo" src="logo.png" alt="Anjani Real Heights logo" />
+      </a>
 
-<!-- ================= HEADER ================= -->
-<header class="header">
-  <div class="container header-inner">
-    <div class="logo-wrap">
-      <img src="logo.png" alt="Anjani Real Heights Real Estate Hisar" class="logo">
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#why">Why Us</a>
+        <a href="#owners">Owners</a>
+        <a href="#areas">Areas</a>
+        <a href="#maps">Maps</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="header__cta">
+        <a class="chip chip--call" href="tel:+919050040129" aria-label="Call Anjani Real Heights">📞 9050040129</a>
+        <a class="chip chip--wa" href="https://wa.me/919050040129" target="_blank" rel="noopener" aria-label="WhatsApp Anjani Real Heights">WhatsApp</a>
+      </div>
+
+      <button class="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
     </div>
-    <div class="header-contact">
-      <a href="tel:+919050040129">📞 +91 9050040129</a>
+
+    <!-- Mobile drawer -->
+    <div class="mobileNav" aria-hidden="true">
+      <a href="#why">Why Us</a>
+      <a href="#owners">Owners</a>
+      <a href="#areas">Areas</a>
+      <a href="#maps">Maps</a>
+      <a href="#contact">Contact</a>
+      <div class="mobileNav__cta">
+        <a class="btn btn--primary" href="tel:+919050040129">Call Now</a>
+        <a class="btn btn--whatsapp" href="https://wa.me/919050040129" target="_blank" rel="noopener">WhatsApp Now</a>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<!-- ================= HERO ================= -->
-<section class="hero">
-  <div class="container">
-    <h1>Trusted Real Estate Consultant in Hisar</h1>
-    <p>Verified Properties • Clear Registry • Honest Pricing • Local Expertise</p>
+  <!-- =========================
+  HERO
+  ========================= -->
+  <main>
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <div class="badge">
+            <span class="dot"></span>
+            <span>Since 1989 • Trusted in Hisar</span>
+          </div>
 
-    <div class="cta">
-      <a href="tel:+919050040129" class="btn primary">Call Now</a>
-      <a href="https://wa.me/919050040129" class="btn secondary" target="_blank">WhatsApp Now</a>
+          <h1>Trusted Property Deals with Complete Transparency</h1>
+          <p class="sub">
+            Verified properties • Clear registry support • Local HSVP (HUDA) expertise • Honest pricing
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="tel:+919050040129">📞 Call Now</a>
+            <a class="btn btn--whatsapp" href="https://wa.me/919050040129" target="_blank" rel="noopener">💬 WhatsApp Now</a>
+            <a class="btn btn--ghost" href="#lead">Get Free Consultation</a>
+          </div>
+
+          <div class="trustRow">
+            <div class="trustPill">30+ years legacy</div>
+            <div class="trustPill">Registry & documentation</div>
+            <div class="trustPill">Local sectors expertise</div>
+          </div>
+
+          <div class="socialRow" aria-label="Social links">
+            <a class="social" href="https://www.facebook.com/anjanirealheights/" target="_blank" rel="noopener">Facebook</a>
+            <a class="social" href="https://www.instagram.com/anjanirealheights?igsh=cWdzOGU2cXk2bGVi" target="_blank" rel="noopener">Instagram</a>
+            <a class="social" href="https://maps.app.goo.gl/xVpHaNrbwDM1WfLdA" target="_blank" rel="noopener">Google Maps</a>
+          </div>
+        </div>
+
+        <div class="hero__card">
+          <!-- Office photo placeholder (upload tomorrow) -->
+          <figure class="mediaCard">
+            <img src="assets/images/office-front.jpg" alt="Anjani Real Heights office front (upload soon)" />
+            <figcaption>
+              <div class="mediaCard__title">Visit Our Office</div>
+              <div class="mediaCard__meta">Sector 14, Hisar • Pocket-A</div>
+            </figcaption>
+          </figure>
+
+          <div class="quickInfo">
+            <div class="qi">
+              <div class="qi__label">Address</div>
+              <div class="qi__value">SSB-318-319, Pocket-A, Sector 14, Hisar (HR) 125001</div>
+            </div>
+            <div class="qi">
+              <div class="qi__label">Phone</div>
+              <div class="qi__value"><a href="tel:+919050040129">+91 9050040129</a></div>
+            </div>
+            <div class="qi">
+              <div class="qi__label">Email</div>
+              <div class="qi__value"><a href="mailto:contact@anjanirealheights.com">contact@anjanirealheights.com</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__bgGlow" aria-hidden="true"></div>
+    </section>
+
+    <!-- =========================
+    WHY CHOOSE US
+    ========================= -->
+    <section class="section" id="why">
+      <div class="container">
+        <div class="sectionHead">
+          <h2>Why Choose Us</h2>
+          <p>Local trust + transparent process + practical guidance for plots, houses & investments.</p>
+        </div>
+
+        <div class="cards4">
+          <article class="card">
+            <div class="icon">✔</div>
+            <h3>Verified Properties</h3>
+            <p>We focus on authenticity and clarity so you deal with genuine options.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">⚖</div>
+            <h3>Legal & Registry Support</h3>
+            <p>Guidance for documentation, registry steps, and process coordination.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">📍</div>
+            <h3>Local Market Expertise</h3>
+            <p>Hisar sectors & colonies knowledge for better decision-making.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">₹</div>
+            <h3>Honest Pricing</h3>
+            <p>Clear expectations with transparent discussion—no hidden surprises.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+    LEAD CAPTURE (EmailJS + WhatsApp Backup)
+    ========================= -->
+    <section class="section section--dark" id="lead">
+      <div class="container leadGrid">
+        <div class="leadCopy">
+          <h2>Get Free Consultation</h2>
+          <p>
+            Share your requirement. We’ll guide you with verified options and practical next steps.
+            <strong>Primary goal: quick response & genuine help.</strong>
+          </p>
+          <ul class="ticks">
+            <li>Plots • Houses • Investment properties</li>
+            <li>HSVP (HUDA) sectors guidance</li>
+            <li>Registry/documentation support</li>
+          </ul>
+        </div>
+
+        <form class="form" id="enquiryForm" autocomplete="on">
+          <div class="formRow">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your full name" required />
+          </div>
+
+          <div class="formRow">
+            <label for="phone">Phone Number</label>
+            <input id="phone" name="phone" type="tel" placeholder="10-digit number" pattern="[0-9]{10}" required />
+          </div>
+
+          <div class="formRow">
+            <label for="req">Property Requirement</label>
+            <select id="req" name="requirement" required>
+              <option value="" selected disabled>Select one</option>
+              <option value="Plot">Plot</option>
+              <option value="House">House</option>
+              <option value="Investment">Investment</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="formRow">
+            <label for="msg">Message (optional)</label>
+            <textarea id="msg" name="message" rows="3" placeholder="Area / budget / timeline…"></textarea>
+          </div>
+
+          <button class="btn btn--primary btn--full" type="submit">
+            Get Free Consultation
+          </button>
+
+          <p class="formNote">
+            Prefer WhatsApp? <a href="#" id="waFallback">Send enquiry on WhatsApp</a>
+          </p>
+
+          <div class="formStatus" id="formStatus" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- =========================
+    OWNERS / TRUST STORY
+    ========================= -->
+    <section class="section" id="owners">
+      <div class="container">
+        <div class="sectionHead">
+          <h2>Meet the People Behind the Trust</h2>
+          <p>Second-generation real estate consultancy with a legacy built in Hisar since 1989.</p>
+        </div>
+
+        <div class="ownerGrid">
+          <article class="ownerCard">
+            <div class="ownerMedia">
+              <img src="assets/images/owner-abhimanyu.jpg" alt="Owner photo placeholder - Abhimanyu Soni" />
+              <span class="tag">Founder • Since 1989</span>
+            </div>
+            <div class="ownerBody">
+              <h3>Abhimanyu Soni</h3>
+              <p class="ownerSub">Founder • Local Market Veteran</p>
+              <p>Started this business in 1989 with a focus on honesty, transparency, and long-term relationships.</p>
+            </div>
+          </article>
+
+          <article class="ownerCard">
+            <div class="ownerMedia">
+              <img src="assets/images/owner-manish.jpg" alt="Owner photo placeholder - Manish Soni" />
+              <span class="tag">2nd Gen • Since 2018</span>
+            </div>
+            <div class="ownerBody">
+              <h3>Manish Soni</h3>
+              <p class="ownerSub">Second Generation • Modern Lead Support</p>
+              <p>Continuing the legacy since 2018 with fast response, organized process and digital-first communication.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+    DEALING AREAS
+    ========================= -->
+    <section class="section section--soft" id="areas">
+      <div class="container">
+        <div class="sectionHead">
+          <h2>Dealing Areas</h2>
+          <p>Focused coverage across key HSVP (HUDA) sectors and major private colonies in Hisar.</p>
+        </div>
+
+        <div class="areaChips">
+          <span class="chip2">Sector 14</span>
+          <span class="chip2">Sector 14 Part 2</span>
+          <span class="chip2">Sector 33</span>
+          <span class="chip2">Sector 1–4</span>
+          <span class="chip2">Sector 9–11</span>
+          <span class="chip2">Other HSVP Sectors</span>
+          <span class="chip2">Major Private Colonies</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+    MAP DOWNLOADS + MAP DEMAND
+    ========================= -->
+    <section class="section" id="maps">
+      <div class="container">
+        <div class="sectionHead">
+          <h2>Download Area Maps</h2>
+          <p>Download sector & colony maps. Need a specific map? Request it below.</p>
+        </div>
+
+        <div class="mapsGrid">
+          <article class="mapCard">
+            <div class="mapCard__top">
+              <div class="mapIcon">🗺</div>
+              <div>
+                <h3>Hisar Sector Map (PDF)</h3>
+                <p class="muted">Downloadable PDF for quick reference.</p>
+              </div>
+            </div>
+            <div class="mapCard__actions">
+              <a class="btn btn--ghost btn--small" href="assets/maps/hisar-sector-map.pdf" download>Download</a>
+              <a class="btn btn--primary btn--small" href="#lead">Enquiry</a>
+            </div>
+          </article>
+
+          <article class="mapCard">
+            <div class="mapCard__top">
+              <div class="mapIcon">📄</div>
+              <div>
+                <h3>Hisar Colonies Map (PDF)</h3>
+                <p class="muted">Useful for locality understanding.</p>
+              </div>
+            </div>
+            <div class="mapCard__actions">
+              <a class="btn btn--ghost btn--small" href="assets/maps/hisar-colonies-map.pdf" download>Download</a>
+              <a class="btn btn--primary btn--small" href="#lead">Enquiry</a>
+            </div>
+          </article>
+
+          <article class="mapCard mapCard--wide">
+            <div class="mapCard__top">
+              <div class="mapIcon">✉</div>
+              <div>
+                <h3>Request a Map</h3>
+                <p class="muted">Tell us which sector/colony map you need. We’ll share it.</p>
+              </div>
+            </div>
+
+            <form class="miniForm" id="mapRequestForm">
+              <input name="map_name" type="text" placeholder="Map needed (e.g., Sector 14 layout)" required />
+              <input name="phone" type="tel" placeholder="Your phone (10 digits)" pattern="[0-9]{10}" required />
+              <button class="btn btn--primary btn--small" type="submit">Request</button>
+              <div class="miniStatus" id="mapStatus" aria-live="polite"></div>
+            </form>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+    CONTACT + MAP EMBED
+    ========================= -->
+    <section class="section" id="contact">
+      <div class="container contactGrid">
+        <div class="contactCard">
+          <h2>Contact & Visit</h2>
+          <p class="muted">SSB-318-319, Pocket-A, Sector 14, Hisar, Haryana 125001</p>
+
+          <div class="contactActions">
+            <a class="btn btn--primary" href="tel:+919050040129">Call Now</a>
+            <a class="btn btn--whatsapp" href="https://wa.me/919050040129" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn btn--ghost" href="mailto:contact@anjanirealheights.com">Email</a>
+          </div>
+
+          <div class="socialRow socialRow--boxed">
+            <a class="social" href="https://www.facebook.com/anjanirealheights/" target="_blank" rel="noopener">Facebook</a>
+            <a class="social" href="https://www.instagram.com/anjanirealheights?igsh=cWdzOGU2cXk2bGVi" target="_blank" rel="noopener">Instagram</a>
+            <a class="social" href="https://maps.app.goo.gl/xVpHaNrbwDM1WfLdA" target="_blank" rel="noopener">Open in Maps</a>
+          </div>
+        </div>
+
+        <div class="mapEmbed" aria-label="Google map embed">
+          <iframe
+            title="Anjani Real Heights Location"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=SSB-318-319%20Pocket-A%20Sector%2014%20Hisar%20Haryana%20125001&output=embed">
+          </iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================
+  FOOTER
+  ========================= -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__left">
+        <div class="footerBrand">Anjani Real Heights</div>
+        <div class="footerLine">Your Local Real Estate Partner • Hisar</div>
+      </div>
+
+      <div class="footer__right">
+        <a href="tel:+919050040129">📞 +91 9050040129</a>
+        <span class="sep">•</span>
+        <a href="https://wa.me/919050040129" target="_blank" rel="noopener">WhatsApp</a>
+        <span class="sep">•</span>
+        <a href="mailto:contact@anjanirealheights.com">contact@anjanirealheights.com</a>
+      </div>
     </div>
-  </div>
-</section>
-
-<!-- ================= WHY US ================= -->
-<section class="why">
-  <div class="container">
-    <h2>Why Choose Anjani Real Heights</h2>
-    <div class="grid">
-      <div>✔ Verified & Genuine Properties</div>
-      <div>✔ Complete Legal & Registry Support</div>
-      <div>✔ 30+ Years Local Market Experience</div>
-      <div>✔ Transparent & Honest Pricing</div>
+    <div class="container footer__bottom">
+      <small>© <span id="year"></span> Anjani Real Heights. All Rights Reserved.</small>
     </div>
-  </div>
-</section>
+  </footer>
 
-<!-- ================= LEAD FORM ================= -->
-<section class="lead">
-  <div class="container">
-    <h2>Get Free Property Consultation</h2>
-    <form id="leadForm" aria-label="Property consultation form">
-      <input type="text" placeholder="Your Name" required>
-      <input type="tel" placeholder="Phone Number" required>
-      <select required>
-        <option value="">Property Requirement</option>
-        <option>Plot</option>
-        <option>House</option>
-        <option>Investment</option>
-      </select>
-      <button type="submit">Get Free Consultation</button>
-    </form>
-  </div>
-</section>
+  <!-- Floating WhatsApp -->
+  <a class="waFloat" href="https://wa.me/919050040129" target="_blank" rel="noopener" aria-label="WhatsApp floating button">
+    <span>💬</span>
+  </a>
 
-<!-- ================= ABOUT ================= -->
-<section class="about">
-  <div class="container">
-    <h2>About Anjani Real Heights</h2>
-    <p>
-      Anjani Real Heights is a reputed real estate consultancy in Hisar, serving property buyers since the early 1990s.
-      With more than 30 years of experience, we specialize in plots, houses and property investments with complete transparency.
-    </p>
-  </div>
-</section>
-
-<!-- ================= AREAS ================= -->
-<section class="areas">
-  <div class="container">
-    <h2>Service Areas in Hisar</h2>
-    <p>
-      Sector 9, Sector 13, Sector 14, Sector 15, Sector 33, Urban Estate & nearby developing locations
-    </p>
-  </div>
-</section>
-
-<!-- ================= FOOTER ================= -->
-<footer class="footer">
-  <p>
-    <a href="tel:+919050040129">📞 +91 9050040129</a> |
-    <a href="https://wa.me/919050040129" target="_blank">WhatsApp</a>
-  </p>
-  <p>Your Local Real Estate Partner in Hisar</p>
-  <p>© 2025 Anjani Real Heights</p>
-</footer>
-
-<!-- ================= WHATSAPP FLOAT ================= -->
-<a href="https://wa.me/919050040129" class="whatsapp" target="_blank" aria-label="Chat on WhatsApp">💬</a>
-
-<script src="script.js"></script>
+  <!-- EmailJS (Recommended for Static) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
