@@ -64,5 +64,11 @@ body{margin:0;font-family:Inter,sans-serif}
  .hero__grid{grid-template-columns:1fr}
  .cards{grid-template-columns:1fr 1fr}
 }
+/* FIX: header wrap / 2-line issue */
+.header .container{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 
 
