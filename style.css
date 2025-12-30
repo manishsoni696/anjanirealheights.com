@@ -30,7 +30,10 @@ body{margin:0;font-family:Inter,sans-serif}
 .chip--call{border:1px solid #ddd;color:var(--blue)}
 .chip--wa{background:var(--green);color:#fff}
 
-.hero{background:var(--soft);padding:60px 0}
+.hero{
+  background:var(--soft);
+  padding:40px 0;   /* pehle 60px tha */
+}
 .hero__grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
 .hero__card img{width:100%;border-radius:16px}
 
@@ -76,6 +79,7 @@ body{margin:0;font-family:Inter,sans-serif}
 .header__inner{
   flex-wrap: nowrap;
 }
+
 
 
 
