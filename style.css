@@ -13,6 +13,9 @@ body{margin:0;font-family:Inter,sans-serif}
 .header__inner{
   padding:8px 0;     /* कम padding */
   min-height:64px;   /* कम header height */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 .brand__logo{
   height:110px;
@@ -73,6 +76,7 @@ body{margin:0;font-family:Inter,sans-serif}
 .header__inner{
   flex-wrap: nowrap;
 }
+
 
 
 
