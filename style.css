@@ -11,12 +11,9 @@ body{margin:0;font-family:Inter,sans-serif}
 
 .header{position:sticky;top:0;background:#fff;border-bottom:1px solid #eee;z-index:9}
 .header__inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  min-height:120px;
+  padding:8px 0;     /* कम padding */
+  min-height:64px;   /* कम header height */
 }
-
 .brand__logo{
   height:110px;
   width:110px;
@@ -67,4 +64,5 @@ body{margin:0;font-family:Inter,sans-serif}
  .hero__grid{grid-template-columns:1fr}
  .cards{grid-template-columns:1fr 1fr}
 }
+
 
