@@ -79,6 +79,43 @@ body{margin:0;font-family:Inter,sans-serif}
 .header__inner{
   flex-wrap: nowrap;
 }
+/* OFFICE FRONT HOVER EFFECT */
+.hero__card{
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__card img{
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.hero__card:hover img{
+  transform: scale(1.08);
+  filter: brightness(0.9);
+}
+
+/* Optional overlay text on hover */
+.hero__card::after{
+  content: "Visit Our Office";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+  background: rgba(10,42,67,0.45);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero__card:hover::after{
+  opacity: 1;
+}
+
 
 
 
