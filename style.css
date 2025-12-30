@@ -10,17 +10,20 @@ body{margin:0;font-family:Inter,sans-serif}
 .container{max-width:1200px;margin:auto;padding:20px}
 
 .header{position:sticky;top:0;background:#fff;border-bottom:1px solid #eee;z-index:9}
-.header__inner{display:flex;align-items:center;justify-content:space-between}
-
-.brand__logo{
-  height:84px;
-  width:84px;
-  border-radius:50%;
-  object-fit:cover;
-  transform:scale(1.35);
-  background:#fff;
+.header__inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  min-height:120px;
 }
 
+.brand__logo{
+  height:110px;
+  width:110px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#fff;
+}
 .nav a{margin:0 10px;color:#444;text-decoration:none;font-weight:600}
 
 .chip{padding:10px 14px;border-radius:30px;text-decoration:none;font-weight:700}
@@ -64,3 +67,4 @@ body{margin:0;font-family:Inter,sans-serif}
  .hero__grid{grid-template-columns:1fr}
  .cards{grid-template-columns:1fr 1fr}
 }
+
