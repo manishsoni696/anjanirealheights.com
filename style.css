@@ -69,6 +69,11 @@ body{margin:0;font-family:Inter,sans-serif}
   padding-top: 0;
   padding-bottom: 0;
 }
+/* FINAL FIX: header single-line */
+.header__inner{
+  flex-wrap: nowrap;
+}
+
 
 
 
