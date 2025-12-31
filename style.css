@@ -11,11 +11,12 @@ body{margin:0;font-family:Inter,sans-serif}
 
 .header{position:sticky;top:0;background:#fff;border-bottom:1px solid #eee;z-index:9}
 .header__inner{
-  padding:8px 0;     /* कम padding */
-  min-height:64px;   /* कम header height */
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+  padding: 8px 0;
+  min-height: 100px;   /* ← यही main fix है */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
 }
 .brand__logo{
   height: 90px;     /* balanced size */
@@ -115,6 +116,7 @@ body{margin:0;font-family:Inter,sans-serif}
 .hero__card:hover::after{
   opacity: 1;
 }
+
 
 
 
