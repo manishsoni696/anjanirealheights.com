@@ -102,7 +102,6 @@ body{margin:0;font-family:Inter,sans-serif}
 
 @media(max-width:900px){
  .hero__grid{grid-template-columns:1fr}
- .cards{grid-template-columns:1fr 1fr}
   .cards{grid-template-columns:1fr}
 }
 /* FIX: header wrap / 2-line issue */
@@ -146,6 +145,7 @@ body{margin:0;font-family:Inter,sans-serif}
 .hero__card:hover::after{
   opacity: 1;
 }
+
 
 
 
