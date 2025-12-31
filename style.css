@@ -18,8 +18,8 @@ body{margin:0;font-family:Inter,sans-serif}
   justify-content:space-between;
 }
 .brand__logo{
-  height:110px;
-  width:110px;
+  height:56px;   /* header text ke barabar */
+  width:56px;
   border-radius:50%;
   object-fit:cover;
   background:#fff;
@@ -115,6 +115,7 @@ body{margin:0;font-family:Inter,sans-serif}
 .hero__card:hover::after{
   opacity: 1;
 }
+
 
 
 
