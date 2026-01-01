@@ -74,14 +74,13 @@ function emailJsNotConfigured() {
 const enquiryForm = document.getElementById("enquiryForm");
 const formStatus = document.getElementById("formStatus");
 
-/* --- Ye naya wala code copy karke purane ki jagah paste karein --- */
 if (enquiryForm) {
   enquiryForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const name = document.getElementById("name").value.trim();
     const phone = document.getElementById("phone").value.trim();
-    const email = document.getElementById("email") ? document.getElementById("email").value.trim() : ""; // Naya Email field
+    const email = document.getElementById("email") ? document.getElementById("email").value.trim() : "";
     const requirement = document.getElementById("req").value;
     const message = document.getElementById("msg").value.trim();
 
@@ -104,19 +103,30 @@ if (enquiryForm) {
         to_email: EMAIL_TO,
         name,
         phone,
-        email: email || "Not provided", // Email agar blank hai toh "Not provided" likha aayega
+        email: email || "Not provided",
         requirement,
         message: message || "-",
         source: "Website Lead (anjanirealheights.com)",
         timestamp: new Date().toLocaleString("en-IN")
       };
 
+      // 1. Lead Notification (Aapke liye)
       await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, payload);
 
-      // Aapka naya professional success message
+      // 2. Auto Reply (Customer ke liye) - Template ID: template_tlucta5
+      if (email && email !== "") {
+        const replyPayload = {
+          name: name,
+          requirement: requirement,
+          phone: phone,
+          email: email
+        };
+        await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, "template_tlucta5", replyPayload);
+      }
+
       setStatus(formStatus, "✅ Shukriya! Aapki enquiry humein mil gayi hai. Anjani Real Heights ki team jald hi aapse sampark karegi.", true);
-      
       enquiryForm.reset();
+
     } catch (err) {
       console.error("EmailJS Error:", err);
       setStatus(formStatus, "❌ Email failed. Opening WhatsApp…", false);
@@ -124,11 +134,3 @@ if (enquiryForm) {
     }
   });
 }
-
-
-
-
-
-
-
-
