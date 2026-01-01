@@ -53,9 +53,9 @@ if (waFallback) {
 
 /* EmailJS config (paste real values) */
 const EMAILJS_CONFIG = {
-  SERVICE_ID: "PASTE_SERVICE_ID_HERE",
-  TEMPLATE_ID: "PASTE_TEMPLATE_ID_HERE",
-  PUBLIC_KEY: "PASTE_PUBLIC_KEY_HERE"
+  SERVICE_ID: "service_arh_hisar",
+  TEMPLATE_ID: "template_55qbk8p",
+  PUBLIC_KEY: "Inc1nzB6No1yQOL6iKJkg"
 };
 
 function setStatus(el, text, ok=true) {
@@ -118,3 +118,4 @@ if (enquiryForm) {
     }
   });
 }
+
