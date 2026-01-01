@@ -54,7 +54,7 @@ if (waFallback) {
 /* EmailJS config (paste real values) */
 const EMAILJS_CONFIG = {
   SERVICE_ID: "service_7i6njuj",
-  TEMPLATE_ID: "template_55qbk8p",
+  TEMPLATE_ID: "template_vzwyw2n",
   PUBLIC_KEY: "Inc1nzB6No1yQOL6iKJkg"
 };
 
@@ -118,5 +118,6 @@ if (enquiryForm) {
     }
   });
 }
+
 
 
