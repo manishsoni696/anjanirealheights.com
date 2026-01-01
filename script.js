@@ -74,12 +74,14 @@ function emailJsNotConfigured() {
 const enquiryForm = document.getElementById("enquiryForm");
 const formStatus = document.getElementById("formStatus");
 
+/* --- Ye naya wala code copy karke purane ki jagah paste karein --- */
 if (enquiryForm) {
   enquiryForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const name = document.getElementById("name").value.trim();
     const phone = document.getElementById("phone").value.trim();
+    const email = document.getElementById("email") ? document.getElementById("email").value.trim() : ""; // Naya Email field
     const requirement = document.getElementById("req").value;
     const message = document.getElementById("msg").value.trim();
 
@@ -102,6 +104,7 @@ if (enquiryForm) {
         to_email: EMAIL_TO,
         name,
         phone,
+        email: email || "Not provided", // Email agar blank hai toh "Not provided" likha aayega
         requirement,
         message: message || "-",
         source: "Website Lead (anjanirealheights.com)",
@@ -110,14 +113,19 @@ if (enquiryForm) {
 
       await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, payload);
 
-      setStatus(formStatus, "✅ Thank you! We received your enquiry.", true);
+      // Aapka naya professional success message
+      setStatus(formStatus, "✅ Shukriya! Aapki enquiry humein mil gayi hai. Anjani Real Heights ki team jald hi aapse sampark karegi.", true);
+      
       enquiryForm.reset();
     } catch (err) {
+      console.error("EmailJS Error:", err);
       setStatus(formStatus, "❌ Email failed. Opening WhatsApp…", false);
       window.open(buildWAFromForm(), "_blank", "noopener");
     }
   });
 }
+
+
 
 
 
