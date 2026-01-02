@@ -1,88 +1,81 @@
-/* ==========================================
-   1. CORE & DESKTOP STYLES (Side-by-Side)
-   ========================================== */
-:root{
-  --blue:#0A2A43;
-  --green:#2E7D32;
-  --gold:#d4af37;
-  --soft:#f5f7fa;
+/* ============================================================
+   1. DESKTOP STYLES (Laptops & Computers ke liye)
+   ============================================================ */
+:root {
+  --blue: #0A2A43;
+  --green: #2E7D32;
+  --soft: #f5f7fa;
 }
 
-*{box-sizing:border-box}
-body{margin:0;font-family:Inter,sans-serif; overflow-x: hidden;}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, sans-serif; overflow-x: hidden; }
 
-.container{max-width:1200px;margin:auto;padding:0 20px}
+.container { max-width: 1200px; margin: auto; padding: 0 20px; }
 
-/* Desktop Header */
-.header{position:sticky;top:0;background:#fff;border-bottom:1px solid #eee;z-index:999}
+/* Desktop Header - Isse side-by-side layout wapas aayega */
+.header { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #eee; z-index: 999; }
 .header__inner {
   padding: 10px 0;
-  display: flex;
+  display: flex; /* Logo, Menu, Buttons side-by-side rakhta hai */
   align-items: center;
   justify-content: space-between;
 }
-.brand__logo{ height: 85px; width: 85px; border-radius: 50%; object-fit: cover; }
-.nav a{margin:0 15px; color:#444; text-decoration:none; font-weight:600}
+.brand__logo { height: 80px; width: 80px; border-radius: 50%; object-fit: cover; }
+.nav a { margin: 0 15px; color: #444; text-decoration: none; font-weight: 600; }
 
-/* Desktop Buttons & Chips */
-.chip{padding:10px 18px; border-radius:30px; text-decoration:none; font-weight:700; display: inline-flex; align-items: center; justify-content: center;}
-.chip--call{border:1px solid #ddd; color:var(--blue)}
-.chip--wa{background:var(--green); color:#fff; margin-left: 10px;}
+.chip { padding: 10px 18px; border-radius: 30px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+.chip--call { border: 1px solid #ddd; color: var(--blue); }
+.chip--wa { background: var(--green); color: #fff; margin-left: 10px; }
 
-.btn{padding:16px 24px; border-radius:14px; text-decoration:none; font-weight:700; display: inline-flex; align-items: center; justify-content: center; text-align: center;}
-.btn--primary{background:var(--blue); color:#fff}
-.btn--whatsapp{background:var(--green); color:#fff}
+/* Desktop Hero Section */
+.hero { background: var(--soft); padding: 80px 0; }
+.hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.hero__card img { width: 100%; border-radius: 16px; display: block; }
 
-/* Hero Section Desktop */
-.hero{ background:var(--soft); padding:80px 0; }
-.hero__grid{display:grid; grid-template-columns: 1fr 1fr; gap:40px; align-items: center;}
-.hero__card img{width:100%; border-radius:16px; transition: transform 0.6s ease;}
 .hero-buttons { display: flex; gap: 15px; margin-top: 25px; }
+.btn { padding: 16px 24px; border-radius: 14px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; text-align: center; }
+.btn--primary { background: var(--blue); color: #fff; }
+.btn--whatsapp { background: var(--green); color: #fff; }
 
-/* Owner Section Hover Effects */
+/* Owner Section */
 .ownerGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 40px 0; }
-.ownerCard { background: #fff; border-radius: 20px; padding: 20px; text-align: center; transition: all 0.4s ease; border: 1px solid rgba(0,0,0,0.05); }
-.ownerCard:hover { transform: translateY(-15px); border-color: var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-.ownerCard img { width: 100%; height: 380px; object-fit: contain; background: #f9f9f9; border-radius: 15px; transition: all 0.5s ease; }
-.ownerCard:hover img { transform: scale(1.05); }
+.ownerCard { background: #fff; padding: 20px; border-radius: 20px; text-align: center; transition: 0.3s; border: 1px solid #eee; }
+.ownerCard img { width: 100%; height: 380px; object-fit: contain; background: #f9f9f9; border-radius: 15px; }
+.footer { text-align: center; background: #0b1826; color: #fff; padding: 20px; }
 
-/* Other Sections */
-.section{padding:60px 0}
-.cards{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
-.card{ padding:22px; background:#fff; border-radius:16px; box-shadow: 0 10px 24px rgba(0,0,0,0.05); }
-.footer{text-align:center; background:#0b1826; color:#fff; padding:20px}
-
-/* ==========================================
-   2. MOBILE UI FIX (Sirf Mobile par asar karega)
-   ========================================== */
+/* ============================================================
+   2. MOBILE ONLY STYLES (Sirf phones par asar karega)
+   ============================================================ */
 @media (max-width: 768px) {
     /* Header overlap aur centering fix */
     .header { position: relative !important; }
     .header__inner {
-        flex-direction: column !important;
+        flex-direction: column !important; /* Mobile par logo ke niche menu aayega */
         gap: 15px !important;
         text-align: center;
         padding: 15px 0 !important;
     }
 
-    .nav { justify-content: center !important; gap: 12px !important; margin: 10px 0 !important; }
-    
-    /* Top Call/WA buttons stack */
+    .nav { justify-content: center !important; gap: 12px !important; margin-bottom: 10px !important; }
+
+    /* Top Buttons centering */
     .header__inner > div:last-child {
         display: flex !important;
         flex-direction: column !important;
         width: 100% !important;
-        gap: 10px !important;
+        gap: 8px !important;
         align-items: center !important;
     }
     .chip { width: 100% !important; max-width: 280px !important; margin-left: 0 !important; }
 
-    /* Hero Buttons - SPACIOUS & CENTERED */
+    /* Hero Buttons - GAP & CENTER FIX */
+    .hero__grid { grid-template-columns: 1fr !important; text-align: center; }
+    
     .hero-buttons {
         flex-direction: column !important;
-        align-items: center !important;
-        gap: 22px !important; /* YAHAN GAP FIX KIYA HAI */
+        gap: 22px !important; /* Yahan saaf space (gap) add kiya gaya hai */
         margin-top: 35px !important;
+        align-items: center !important;
         width: 100% !important;
     }
 
@@ -92,8 +85,4 @@ body{margin:0;font-family:Inter,sans-serif; overflow-x: hidden;}
         margin: 0 auto !important;
         display: flex !important;
     }
-
-    .hero__grid { grid-template-columns: 1fr !important; text-align: center; }
-    .hero h1 { font-size: 26px !important; line-height: 1.2 !important; margin-top: 15px !important; }
-    .cards { grid-template-columns: 1fr !important; }
 }
