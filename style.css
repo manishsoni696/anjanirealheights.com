@@ -9,7 +9,7 @@ body{margin:0;font-family:Inter,sans-serif; overflow-x: hidden;}
 
 .container{max-width:1200px;margin:auto;padding:20px}
 
-/* DESKTOP HEADER */
+/* --- DESKTOP DESIGN (Default) --- */
 .header{position:sticky;top:0;background:#fff;border-bottom:1px solid #eee;z-index:999}
 .header__inner {
   padding: 8px 0;
@@ -20,29 +20,26 @@ body{margin:0;font-family:Inter,sans-serif; overflow-x: hidden;}
 .brand__logo{ height: 80px; width: 80px; border-radius: 50%; object-fit: cover; }
 .nav a{margin:0 10px;color:#444;text-decoration:none;font-weight:600}
 
-/* CHIPS & BUTTONS */
-.chip{padding:10px 14px;border-radius:30px;text-decoration:none;font-weight:700; display: inline-flex; align-items: center; justify-content: center;}
+.chip{padding:10px 18px;border-radius:30px;text-decoration:none;font-weight:700; display: inline-flex; align-items: center; justify-content: center;}
 .chip--call{border:1px solid #ddd;color:var(--blue)}
-.chip--wa{background:var(--green);color:#fff}
+.chip--wa{background:var(--green);color:#fff; margin-left: 10px;}
 
-.hero{ background:var(--soft); padding:60px 0; }
-.hero__grid{display:grid;grid-template-columns:1fr 1fr;gap:30px; align-items: center;}
+.hero{ background:var(--soft); padding:80px 0; }
+.hero__grid{display:grid;grid-template-columns:1fr 1fr;gap:40px; align-items: center;}
 .hero__card img{width:100%;border-radius:16px}
 
-.btn{padding:16px 20px;border-radius:14px;text-decoration:none;font-weight:700; display: flex; align-items: center; justify-content: center; text-align: center;}
+.hero-buttons { display: flex; gap: 15px; margin-top: 25px; }
+.btn{padding:16px 24px;border-radius:14px;text-decoration:none;font-weight:700; display: inline-flex; align-items: center; justify-content: center;}
 .btn--primary{background:var(--blue);color:#fff}
 .btn--whatsapp{background:var(--green);color:#fff}
-.btn--ghost{border:1px solid #ccc;color:var(--blue)}
 
-/* MOBILE RESPONSIVE FIXES */
+/* --- MOBILE RESPONSIVE (Only for Mobile) --- */
 @media (max-width: 768px) {
-    /* Congestion hatane ke liye space */
     .header { position: relative !important; }
     
     .header__inner {
         flex-direction: column !important;
         gap: 15px !important;
-        padding: 15px !important;
         text-align: center;
     }
 
@@ -51,44 +48,29 @@ body{margin:0;font-family:Inter,sans-serif; overflow-x: hidden;}
         flex-wrap: wrap !important;
         justify-content: center !important;
         gap: 12px !important;
-        margin: 10px 0 !important;
     }
 
-    .nav a { font-size: 14px; margin: 5px !important; }
-
-    /* Header Buttons Fix */
     .header__inner > div:last-child {
         display: flex !important;
         flex-direction: column !important;
         gap: 10px !important;
         width: 100% !important;
-        align-items: center !important;
     }
 
-    .chip { width: 100% !important; max-width: 280px !important; }
+    .chip { width: 100% !important; max-width: 280px !important; margin-left: 0 !important; }
 
-    /* Hero Section Congestion Fix */
-    .hero__grid { grid-template-columns: 1fr !important; text-align: center; }
+    .hero__grid { grid-template-columns: 1fr !important; text-align: center; padding: 0 10px; }
     
-    .hero h1 { 
-        font-size: 26px !important; 
-        margin-top: 20px !important; 
-        line-height: 1.2 !important; 
-    }
+    .hero h1 { font-size: 26px !important; margin-top: 20px !important; }
 
-    /* Buttons Centering & Spacing */
     .hero-buttons {
-        display: flex !important;
         flex-direction: column !important;
-        gap: 15px !important;
-        margin-top: 30px !important;
         align-items: center !important;
     }
 
     .btn {
         width: 100% !important;
         max-width: 320px !important;
-        margin: 0 auto !important; /* CENTER TEXT & BUTTON */
-        font-size: 16px !important;
+        margin: 0 auto !important;
     }
 }
