@@ -527,6 +527,35 @@ body{margin:0;font-family:Inter,sans-serif}
 @media (max-width: 768px) {
     .contact__grid { grid-template-columns: 1fr; }
 }
+/* --- FULL CARD CLICKABLE FUNCTIONALITY --- */
+.contact__item-link {
+    text-decoration: none; /* Default blue underline hatane ke liye */
+    color: inherit;       /* Text ka asli color white hi rahega */
+    display: block;       /* Poori width cover karne ke liye */
+    transition: all 0.3s ease;
+}
+
+/* Jab mouse poore card area par jaye */
+.contact__item-link:hover .contact__item {
+    background: rgba(255, 255, 255, 0.12); /* Thoda chamkega */
+    transform: translateY(-8px);           /* Card thoda upar uthega */
+    border-color: #d4af37;                 /* Gold border chamkegi */
+    box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+}
+
+/* Card ke niche wale chote hint text ki styling */
+.contact__item small {
+    display: block;
+    margin-top: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.contact__item-link:hover small {
+    letter-spacing: 1.5px; /* Hover par text thoda failega (Premium Effect) */
+}
 
 
 
