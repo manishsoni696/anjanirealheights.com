@@ -433,6 +433,41 @@ body{margin:0;font-family:Inter,sans-serif}
     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
     border-color: #d4af37;
 }
+/* --- MAP DOWNLOAD CHIPS STYLING --- */
+.map-chip {
+    text-decoration: none;
+    background: #ffffff;
+    color: #1a1a1a;
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 1px solid #d4af37; /* Gold Border */
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.map-chip:hover {
+    background: #d4af37; /* Gold Background on hover */
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(212, 175, 55, 0.3);
+}
+
+.premium-map {
+    background: #1a1a1a;
+    color: #d4af37;
+    border-color: #d4af37;
+}
+
+.premium-map:hover {
+    background: #d4af37;
+    color: #1a1a1a;
+}
+
 
 
 
