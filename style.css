@@ -1188,87 +1188,60 @@ body{margin:0;font-family:Inter,sans-serif}
 }
 /* SABSE NICHE YE PASTE KAREIN */
 /* FINAL CLEAN MOBILE UI FIX */
+/* CLEAN & CENTERED MOBILE UI FINAL FIX */
 @media (max-width: 768px) {
-    /* Header Buttons Fix */
+    /* Header (Top) Buttons Alignment */
     .header__inner > div:last-child {
         display: flex !important;
         flex-direction: column !important;
-        gap: 6px !important;
+        gap: 8px !important;
         align-items: center !important;
-        margin-top: 10px !important;
+        margin-top: 15px !important;
+        width: 100% !important;
     }
 
     .chip {
-        width: 140px !important;
+        width: 180px !important;
         text-align: center !important;
-        font-size: 12px !important;
-        padding: 6px 10px !important;
+        justify-content: center !important;
+        display: inline-flex !important;
+        font-size: 13px !important;
+        padding: 10px !important;
+        margin: 0 auto !important;
     }
 
-    /* Hero Buttons Congestion Fix */
-    .hero-buttons {
+    /* Hero Buttons (Call/WA/Consultation) Stack Fix */
+    .hero .hero-buttons {
         display: flex !important;
         flex-direction: column !important;
-        gap: 12px !important; /* Buttons ke beech gap badhaya */
-        margin-top: 25px !important;
-        padding: 0 10px !important;
-    }
-
-    .hero-buttons .btn {
+        gap: 15px !important;
+        margin: 30px auto 0 !important;
+        padding: 0 20px !important;
+        align-items: center !important; /* Centers the button stack */
         width: 100% !important;
-        margin: 0 !important; /* Congestion hatane ke liye margin zero */
-        padding: 14px !important; /* Click karne mein aasan */
-        font-size: 16px !important;
-        display: block !important;
-        text-align: center !important;
     }
 
+    .btn {
+        width: 100% !important;
+        max-width: 340px !important; /* Prevents stretching too wide */
+        text-align: center !important;
+        justify-content: center !important;
+        display: flex !important;
+        padding: 16px !important;
+        margin: 0 auto !important; /* Force center alignment */
+        font-size: 16px !important;
+        border-radius: 12px !important;
+    }
+
+    /* Text Centering for Clean Look */
     .hero h1 {
         font-size: 26px !important;
-        margin-bottom: 15px !important;
+        text-align: center !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .hero p {
+        text-align: center !important;
+        margin-bottom: 25px !important;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
