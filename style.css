@@ -508,17 +508,26 @@ body{margin:0;font-family:Inter,sans-serif}
     font-size: 1.1rem;
 }
 
-.contact__item p, .contact__item a {
-    color: #fff;
+/* --- FIX: Phone and Email Visibility --- */
+.contact__item p, 
+.contact__item a {
+    color: #ffffff !important; /* Force white color for visibility */
     text-decoration: none;
     margin: 0;
     font-size: 0.95rem;
-    opacity: 0.9;
+    opacity: 1; /* Pure white instead of transparent */
+    transition: color 0.3s ease;
+}
+
+/* Hover karne par gold effect */
+.contact__item a:hover {
+    color: #d4af37 !important;
 }
 
 @media (max-width: 768px) {
     .contact__grid { grid-template-columns: 1fr; }
 }
+
 
 
 
