@@ -10,13 +10,13 @@ body{margin:0;font-family:Inter,sans-serif}
 .container{max-width:1200px;margin:auto;padding:20px}
 
 .header{position:sticky;top:0;background:#fff;border-bottom:1px solid #eee;z-index:9}
-.header__inner{
+.header__inner {
   padding: 8px 0;
-  min-height: 100px;   /* ← यही main fix है */
+  min-height: auto; /* Ise auto kar dein */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: nowrap;
+  flex-wrap: wrap; /* nowrap ki jagah wrap karein */
 }
 .brand__logo{
   height: 90px;     /* balanced size */
@@ -590,7 +590,57 @@ body{margin:0;font-family:Inter,sans-serif}
         line-height: 1.2;
     }
 }
+/* SABSE NICHE YE PASTE KAREIN */
+@media (max-width: 768px) {
+    /* Logo ko center mein karein */
+    .header__inner {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 12px !important;
+    }
 
+    /* Links (Why Us, Maps etc.) ko line mein set karein */
+    .nav {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 10px !important;
+        margin: 5px 0 !important;
+    }
+
+    .nav a {
+        font-size: 13px !important;
+        margin: 0 5px !important;
+    }
+
+    /* Header ke buttons (Call/WA) ko ek line mein fit karein */
+    .header__inner > div:last-child {
+        display: flex !important;
+        gap: 8px !important;
+    }
+
+    .chip {
+        padding: 6px 10px !important;
+        font-size: 12px !important;
+    }
+
+    /* Main Hero Buttons ko bada aur clickable karein */
+    .hero-buttons {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        width: 100% !important;
+    }
+
+    .btn {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    .hero h1 {
+        font-size: 26px !important;
+    }
+}
 
 
 
