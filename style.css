@@ -308,6 +308,80 @@ body{margin:0;font-family:Inter,sans-serif}
   .leadGrid{ grid-template-columns: 1fr; }
   #lead h2{ font-size: 30px; }
 }
+/* --- PREMIUM OWNERS SECTION STYLING --- */
+.ownerGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 40px 0;
+}
+
+.ownerCard {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.ownerCard:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    border-color: #d4af37; /* Gold touch on hover */
+}
+
+.ownerCard img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    filter: grayscale(20%); /* Thoda vintage/premium look */
+    transition: all 0.5s ease;
+}
+
+.ownerCard:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+.ownerCard h3 {
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.ownerCard p {
+    color: #d4af37; /* Golden Text for Designation */
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+/* Luxury Accent Line */
+.ownerCard::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 4px;
+    background: #d4af37;
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+}
+
+.ownerCard:hover::after {
+    width: 80%;
+}
+
 
 
 
