@@ -556,6 +556,41 @@ body{margin:0;font-family:Inter,sans-serif}
 .contact__item-link:hover small {
     letter-spacing: 1.5px; /* Hover par text thoda failega (Premium Effect) */
 }
+/* Mobile Responsive Fixes */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        font-size: 14px;
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+        line-height: 1.2;
+    }
+}
+
 
 
 
