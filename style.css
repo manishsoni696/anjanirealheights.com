@@ -572,18 +572,19 @@ body{margin:0;font-family:Inter,sans-serif}
         font-size: 14px;
     }
 
-    .hero-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        width: 100%;
-    }
+    /* Hero buttons overlap fix */
+.hero .hero-buttons {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    margin-top: 20px !important;
+}
 
-    .hero-buttons .btn {
-        width: 100%;
-        text-align: center;
-        justify-content: center;
-    }
+.hero .btn {
+    width: 100% !important;
+    margin: 0 !important; /* Purana margin overlap kar raha hai, ise zero karein */
+    display: block !important;
+}
 
     .hero h1 {
         font-size: 28px;
@@ -593,11 +594,19 @@ body{margin:0;font-family:Inter,sans-serif}
 /* SABSE NICHE YE PASTE KAREIN */
 @media (max-width: 768px) {
     /* Logo ko center mein karein */
-    .header__inner {
-        flex-direction: column !important;
-        text-align: center !important;
-        gap: 12px !important;
-    }
+    /* Header ke buttons fix karein */
+.header__inner > div:last-child {
+    display: flex !important;
+    flex-direction: column !important; /* Row ki jagah Column karein */
+    gap: 5px !important;
+    align-items: center !important;
+}
+
+.chip {
+    width: 130px !important; /* Fixed width taaki dono buttons ek barabar dikhein */
+    text-align: center !important;
+    padding: 6px 10px !important;
+}
 
     /* Links (Why Us, Maps etc.) ko line mein set karein */
     .nav {
@@ -641,7 +650,6 @@ body{margin:0;font-family:Inter,sans-serif}
         font-size: 26px !important;
     }
 }
-
 
 
 
