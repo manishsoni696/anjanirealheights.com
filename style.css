@@ -381,6 +381,58 @@ body{margin:0;font-family:Inter,sans-serif}
 .ownerCard:hover::after {
     width: 80%;
 }
+/* --- MODERN DEALING AREAS STYLING --- */
+#areas {
+    background: #f8f9fa;
+    padding: 60px 0;
+}
+
+#areas h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-family: 'Poppins', sans-serif;
+    color: #1a1a1a;
+    position: relative;
+}
+
+/* Title ke niche choti gold line */
+#areas h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #d4af37;
+    margin: 10px auto;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.chips span {
+    background: #ffffff;
+    color: #333;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1px solid #eee;
+    transition: all 0.3s ease;
+    cursor: default;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+/* Hover par Area chamkega */
+.chips span:hover {
+    background: #1a1a1a; /* Dark background on hover */
+    color: #d4af37;      /* Gold text on hover */
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    border-color: #d4af37;
+}
 
 
 
