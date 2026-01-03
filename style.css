@@ -328,3 +328,250 @@ body{
   .hero__actions .btn{width:100%;}
   #lead h2{font-size:30px;}
 }
+/* ==========================================
+   PREMIUM FIX PACK (Owner + Areas + Maps + Contact)
+   Paste this at the VERY END of style.css
+   ========================================== */
+
+/* ---------- OWNER / TEAM (Premium Hover) ---------- */
+.ownerGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:30px;
+  padding:40px 0;
+}
+
+.ownerCard{
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(0,0,0,0.05);
+  box-shadow:0 10px 30px rgba(0,0,0,0.05);
+  transition: all .4s cubic-bezier(.175,.885,.32,1.275);
+}
+
+.ownerCard:hover{
+  transform: translateY(-15px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.12);
+  border-color:#d4af37; /* GOLD */
+}
+
+.ownerCard img{
+  width:100%;
+  height:380px;
+  object-fit:contain;
+  background:#f9f9f9;
+  border-radius:15px;
+  margin-bottom:20px;
+  filter:grayscale(20%);
+  transition: all .5s ease;
+}
+
+.ownerCard:hover img{
+  filter:grayscale(0%);
+  transform:scale(1.05);
+}
+
+.ownerCard h3{
+  font-size:1.5rem;
+  color:#1a1a1a;
+  margin:0 0 6px;
+  font-family:Poppins, Inter, sans-serif;
+  letter-spacing:.5px;
+}
+
+.ownerCard p{
+  margin:0;
+  color:#d4af37;
+  font-weight:600;
+  text-transform:uppercase;
+  font-size:.85rem;
+  letter-spacing:1px;
+}
+
+/* bottom gold accent line */
+.ownerCard::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:0;
+  width:0;
+  height:4px;
+  background:#d4af37;
+  transform:translateX(-50%);
+  transition: all .4s ease;
+}
+.ownerCard:hover::after{ width:80%; }
+
+
+/* ---------- SPECIALIZATION AREAS (Premium Chips) ---------- */
+#areas{
+  background:#f8f9fa;
+  padding:60px 0;
+}
+
+#areas h2{
+  text-align:center;
+  margin-bottom:40px;
+  font-family:Poppins, Inter, sans-serif;
+  color:#1a1a1a;
+  position:relative;
+}
+
+#areas h2::after{
+  content:"";
+  display:block;
+  width:60px;
+  height:3px;
+  background:#d4af37;
+  margin:10px auto 0;
+}
+
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:15px;
+}
+
+.chips span{
+  background:#fff;
+  color:#333;
+  padding:12px 25px;
+  border-radius:50px;
+  font-weight:600;
+  font-size:.95rem;
+  border:1px solid #eee;
+  cursor:default;
+  box-shadow:0 4px 6px rgba(0,0,0,0.02);
+  transition: all .3s ease;
+}
+
+.chips span:hover{
+  background:#1a1a1a;
+  color:#d4af37;
+  transform:translateY(-5px);
+  box-shadow:0 8px 15px rgba(0,0,0,0.10);
+  border-color:#d4af37;
+}
+
+
+/* ---------- MAP DOWNLOAD (Premium Chips) ---------- */
+.map-chip{
+  text-decoration:none;
+  background:#fff;
+  color:#1a1a1a;
+  padding:12px 20px;
+  border-radius:10px;
+  border:1px solid #d4af37;
+  font-weight:600;
+  font-size:.9rem;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition: all .3s ease;
+  box-shadow:0 4px 6px rgba(0,0,0,0.05);
+}
+
+.map-chip:hover{
+  background:#d4af37;
+  color:#fff;
+  transform:translateY(-3px);
+  box-shadow:0 8px 15px rgba(212,175,55,0.30);
+}
+
+.premium-map{
+  background:#1a1a1a;
+  color:#d4af37;
+  border-color:#d4af37;
+}
+.premium-map:hover{
+  background:#d4af37;
+  color:#1a1a1a;
+}
+
+
+/* ---------- CONTACT (Full card clickable + premium hover) ---------- */
+.contact__inner{
+  text-align:center;
+  max-width:800px;
+}
+
+.contact__grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  gap:30px;
+  margin-top:40px;
+}
+
+.contact__item{
+  background: rgba(255,255,255,0.05);
+  padding:25px;
+  border-radius:15px;
+  border:1px solid rgba(255,255,255,0.10);
+  transition: all .3s ease;
+  text-align:left;
+}
+
+.contact__item .icon{
+  font-size:2rem;
+  display:block;
+  margin-bottom:15px;
+}
+
+.contact__item strong{
+  display:block;
+  color:#d4af37;
+  margin-bottom:6px;
+  font-size:1.1rem;
+}
+
+/* force phone/email visible (white) */
+.contact__item p,
+.contact__item a{
+  color:#fff !important;
+  text-decoration:none;
+  margin:0;
+  font-size:.95rem;
+  opacity:1;
+  transition: color .3s ease;
+}
+
+.contact__item a:hover{
+  color:#d4af37 !important;
+}
+
+/* full card link wrapper */
+.contact__item-link{
+  text-decoration:none;
+  color:inherit;
+  display:block;
+}
+
+.contact__item-link:hover .contact__item{
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-8px);
+  border-color:#d4af37;
+  box-shadow:0 12px 25px rgba(0,0,0,0.40);
+}
+
+.contact__item small{
+  display:block;
+  margin-top:8px;
+  font-weight:600;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  transition:.3s;
+}
+.contact__item-link:hover small{ letter-spacing:1.5px; }
+
+
+/* ---------- MOBILE (Owner/Contact tidy) ---------- */
+@media (max-width:768px){
+  .ownerCard img{ height:320px; }
+  .contact__grid{ grid-template-columns:1fr; }
+}
+
