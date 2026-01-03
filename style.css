@@ -123,7 +123,11 @@ body{
   border-radius:14px;
   font-weight:700;
   text-decoration:none;
-  display:inline-block;
+
+  display:inline-flex;          /* ✅ IMPORTANT */
+  align-items:center;           /* ✅ vertical center */
+  justify-content:center;       /* ✅ horizontal center */
+  text-align:center;
 }
 
 .btn--primary{background:var(--blue);color:#fff;}
@@ -581,5 +585,6 @@ body{
     text-align: center;
   }
 }
+
 
 
