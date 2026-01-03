@@ -574,4 +574,12 @@ body{
   .ownerCard img{ height:320px; }
   .contact__grid{ grid-template-columns:1fr; }
 }
+/* ✅ FIX: Center text inside hero buttons (mobile only) */
+@media (max-width: 768px) {
+  .hero__actions .btn {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
 
