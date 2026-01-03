@@ -230,66 +230,6 @@ body{
   background:linear-gradient(135deg,#2E7D32,#1f6a2a);
 }
 
-/* ================== OWNERS ================== */
-.ownerGrid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
-}
-
-.ownerCard{
-  background:#fff;
-  border-radius:20px;
-  padding:20px;
-  text-align:center;
-  transition:.4s;
-}
-
-.ownerCard:hover{transform:translateY(-12px);}
-
-.ownerCard img{
-  width:100%;
-  height:360px;
-  object-fit:contain;
-  border-radius:15px;
-}
-
-/* ================== AREAS ================== */
-#areas h2{text-align:center;}
-.chips{
-  display:flex;
-  flex-wrap:wrap;
-  gap:15px;
-  justify-content:center;
-}
-
-.chips span{
-  padding:12px 25px;
-  border-radius:50px;
-  background:#fff;
-  border:1px solid #eee;
-  font-weight:600;
-}
-
-/* ================== CONTACT ================== */
-.contact__grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:30px;
-}
-
-.contact__item{
-  padding:25px;
-  border-radius:15px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.1);
-}
-
-.contact__item a,
-.contact__item p{
-  color:#fff;
-  text-decoration:none;
-}
 
 /* ================== FOOTER ================== */
 .footer{
@@ -585,6 +525,7 @@ body{
     text-align: center;
   }
 }
+
 
 
 
