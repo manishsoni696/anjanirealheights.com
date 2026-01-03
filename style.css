@@ -336,6 +336,7 @@ body{
   letter-spacing:1px;
 }
 
+
 /* bottom gold accent line */
 .ownerCard::after{
   content:"";
@@ -525,6 +526,9 @@ body{
     text-align: center;
   }
 }
+/* Maps chips only */
+.mapsChips { gap: 14px; }
+
 
 
 
