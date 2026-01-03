@@ -88,18 +88,17 @@ body{margin:0;font-family:Inter,sans-serif}
 .ownerGrid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .ownerCard img{width:100%;border-radius:16px}
 
-
-/* ===== MOBILE-ONLY OVERRIDES: appended to keep desktop unchanged ===== */
+/* ===== MOBILE-ONLY OVERRIDES: strictly scoped to max-width 719px ===== */
 @media (max-width: 719px) {
-  /* slightly reduce container padding on small devices */
   :root { --container-padding: 14px; }
+
   .container { padding: 0 var(--container-padding); }
 
-  /* Header adjustments (mobile only) */
+  /* Header compact */
   .header__inner { height: 56px; gap: 8px; }
-  .brand__logo { height: 60px; width: 60px; }
+  .brand__logo { height: 36px; width:36px; }
 
-  /* Make main nav horizontally scrollable on mobile to avoid HTML changes */
+  /* Make nav horizontally scrollable on mobile (no HTML changes) */
   .nav {
     display: flex !important;
     position: static;
@@ -113,88 +112,49 @@ body{margin:0;font-family:Inter,sans-serif}
   .nav::-webkit-scrollbar { display: none; }
   .nav a { padding: 10px 12px; font-size: 15px; white-space: nowrap; border-radius: 10px; }
 
-  /* CTA chips and header actions wrap and become easier to tap */
+  /* Header CTA adjustments */
   .header__cta { gap: 8px; margin-left: 8px; }
   .chip { padding: 10px 12px; font-size: 15px; min-height: 44px; }
 
-  /* Hero: single column, responsive sizing */
+  /* Hero: single column */
   .hero { padding: 18px 0; }
   .hero__grid { grid-template-columns: 1fr; gap: 18px; }
-  .badge { font-size: 13px; padding: 6px 8px; }
   h1 { font-size: 22px; line-height: 1.15; }
+  .badge { font-size: 13px; padding: 6px 8px; }
 
-  /* Buttons: stacked, centered, with breathing room */
-  .hero__actions {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;                 /* increase vertical space between buttons */
-    margin-top: 14px;
-    align-items: center;       /* center the buttons */
-    padding-bottom: 92px;      /* add bottom space so floating WA won't overlap */
-  }
-
-  .hero__actions .btn {
-    width: calc(100% - 48px);  /* keep some side breathing room on small screens */
-    max-width: 520px;          /* prevent overly wide buttons on larger phones */
-    padding: 12px 18px;
-    font-size: 16px;
-    border-radius: 12px;
-    box-shadow: none;
-    display: block;
-  }
-
+  /* Buttons: stack, center and add spacing */
+  .hero__actions { display: flex; flex-direction: column; gap: 16px; margin-top: 14px; align-items: center; padding-bottom: 92px; }
+  .hero__actions .btn { width: calc(100% - 48px); max-width: 520px; padding: 12px 18px; font-size: 16px; border-radius: 12px; box-shadow: none; display: block; }
   .btn--ghost { font-size: 15px; padding: 11px 16px; }
 
-  /* Ensure hero card image is fluid */
-  .hero__card { order: 2; }
-  .hero__card img { width: 100%; height: auto; display: block; border-radius: 12px; }
-
-  /* Cards stack on mobile */
+  /* Cards and owners stack */
   .cards { grid-template-columns: 1fr; gap: 12px; }
   .card { padding: 12px; }
+  .ownerGrid { grid-template-columns: 1fr; gap: 12px; }
+  .ownerCard img { width: 140px; height: 140px; }
 
-  /* Lead / form: single column, full width inputs */
+  /* Lead/form adjustments */
   .leadGrid { grid-template-columns: 1fr; gap: 14px; }
-  .form { gap: 10px; }
-  .form input, .form select, .form textarea, .form button {
-    width: 100% !important;
-    font-size: 15px;
-    padding: 12px;
-    min-height: 44px;
-  }
+  .form input, .form select, .form textarea, .form button { width: 100% !important; font-size: 15px; padding: 12px; min-height: 44px; }
   .form textarea { min-height: 120px; }
 
-  /* Owners: single column */
-  .ownerGrid { grid-template-columns: 1fr; gap: 12px; }
-  .ownerCard img { width: 140px; height: 140px; object-fit: cover; }
-
-  /* Chips & map links touch friendly */
-  .chips { gap: 8px; }
+  /* Chips and maps */
   .chips span, .map-chip { display: inline-flex; padding: 10px 12px; font-size: 14px; }
 
-  /* Contact layout stacks */
+  /* Contact stack */
   .contact__grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
   .contact__item { padding: 12px; }
 
-  /* WhatsApp float adjustments to avoid overlapping buttons */
-  .waFloat {
-    position: fixed;
-    right: 14px;
-    bottom: 18px;
-    width: 60px;
-    height: 60px;
-    font-size: 24px;
-    z-index: 60;
-    box-shadow: 0 8px 22px rgba(2,6,23,0.18);
-  }
+  /* WhatsApp float: raise so it doesn't overlap buttons */
+  .waFloat { right: 14px; bottom: 18px; width: 60px; height: 60px; font-size: 24px; box-shadow: 0 8px 22px rgba(2,6,23,0.18); }
 
-  /* Prevent large images / embeds overflowing */
+  /* Ensure images and embeds don't overflow */
   img, iframe, embed, object, video { max-width: 100%; height: auto; }
 
-  /* Improve tap targets globally on mobile */
+  /* Improve tap targets */
   a, button, input, select, textarea { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
 
-  /* Extra tweak for very short/tall phones */
+  /* Small-height tweak */
   @media (max-height: 700px) {
     .hero__actions { gap: 18px; padding-bottom: 112px; }
     .hero__actions .btn { font-size: 15px; }
