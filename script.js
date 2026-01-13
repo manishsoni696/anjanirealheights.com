@@ -1,31 +1,69 @@
 /* =========================
-FILE: script.js
+FILE: script.js - Anjani Real Heights
 ========================= */
 const PHONE_WA = "919050040129";
 const EMAIL_TO = "contact@anjanirealheights.com";
 
+// Set current year in footer
 document.getElementById("year").textContent = new Date().getFullYear();
 
-/* Mobile nav toggle */
-const navToggle = document.querySelector(".navToggle");
-const mobileNav = document.querySelector(".mobileNav");
+/* ==================== MOBILE MENU ==================== */
+const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
+const nav = document.querySelector(".nav");
 
-if (navToggle && mobileNav) {
-  navToggle.addEventListener("click", () => {
-    const isOpen = navToggle.getAttribute("aria-expanded") === "true";
-    navToggle.setAttribute("aria-expanded", String(!isOpen));
-    mobileNav.style.display = isOpen ? "none" : "block";
-    mobileNav.setAttribute("aria-hidden", String(isOpen));
+if (mobileMenuToggle && nav) {
+  mobileMenuToggle.addEventListener("click", () => {
+    nav.classList.toggle("active");
+    const isOpen = nav.classList.contains("active");
+    mobileMenuToggle.setAttribute("aria-expanded", String(isOpen));
+
+    // Change icon
+    const icon = mobileMenuToggle.querySelector("i");
+    if (icon) {
+      icon.className = isOpen ? "fas fa-times" : "fas fa-bars";
+    }
   });
 
-  mobileNav.querySelectorAll("a").forEach(a => {
-    a.addEventListener("click", () => {
-      navToggle.setAttribute("aria-expanded", "false");
-      mobileNav.style.display = "none";
-      mobileNav.setAttribute("aria-hidden", "true");
+  // Close menu when clicking nav links
+  nav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("active");
+      mobileMenuToggle.setAttribute("aria-expanded", "false");
+      const icon = mobileMenuToggle.querySelector("i");
+      if (icon) {
+        icon.className = "fas fa-bars";
+      }
     });
   });
+
+  // Close menu when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!nav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+      nav.classList.remove("active");
+      mobileMenuToggle.setAttribute("aria-expanded", "false");
+      const icon = mobileMenuToggle.querySelector("i");
+      if (icon) {
+        icon.className = "fas fa-bars";
+      }
+    }
+  });
 }
+
+/* ==================== HEADER SCROLL EFFECT ==================== */
+const header = document.querySelector(".header");
+let lastScroll = 0;
+
+window.addEventListener("scroll", () => {
+  const currentScroll = window.pageYOffset;
+
+  if (currentScroll > 100) {
+    header.style.boxShadow = "0 4px 16px rgba(0,0,0,0.1)";
+  } else {
+    header.style.boxShadow = "0 2px 8px rgba(0,0,0,0.08)";
+  }
+
+  lastScroll = currentScroll;
+});
 
 /* WhatsApp fallback builder */
 const waFallback = document.getElementById("waFallback");
