@@ -4,9 +4,9 @@
    ========================================== */
 
 :root {
-  --primary: #0A2A43;
-  --secondary: #2E7D32;
-  --accent: #d4af37;
+  --primary: #0066B3;
+  --secondary: #909090;
+  --accent: #0066B3;
   --dark: #1a1a1a;
   --light: #f8f9fa;
   --white: #ffffff;
@@ -81,11 +81,10 @@ a {
 }
 
 .brand__logo {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--accent);
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+  border: none;
 }
 
 .brand__text {
@@ -168,19 +167,19 @@ a {
 }
 
 .chip--wa {
-  background: var(--secondary);
+  background: #25D366;
   color: var(--white);
 }
 
 .chip--wa:hover {
-  background: #1f6a2a;
+  background: #1da851;
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
 /* ================== HERO SECTION ================== */
 .hero {
-  background: linear-gradient(135deg, #0A2A43 0%, #1a4d6f 100%);
+  background: linear-gradient(135deg, #0066B3 0%, #004d87 100%);
   position: relative;
   padding: 80px 0;
   color: var(--white);
@@ -301,12 +300,12 @@ a {
 }
 
 .btn--whatsapp {
-  background: var(--secondary);
+  background: #25D366;
   color: var(--white);
 }
 
 .btn--whatsapp:hover {
-  background: #1f6a2a;
+  background: #1da851;
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
 }
@@ -490,7 +489,7 @@ a {
 .location-icon {
   width: 70px;
   height: 70px;
-  background: linear-gradient(135deg, var(--primary), #1a4d6f);
+  background: linear-gradient(135deg, #0066B3, #004d87);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -612,7 +611,7 @@ a {
 .why-icon {
   width: 55px;
   height: 55px;
-  background: linear-gradient(135deg, var(--primary), #1a4d6f);
+  background: linear-gradient(135deg, #0066B3, #004d87);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -743,7 +742,7 @@ a {
 }
 
 .news-subscribe {
-  background: linear-gradient(135deg, var(--primary), #1a4d6f);
+  background: linear-gradient(135deg, #0066B3, #004d87);
   border-radius: 16px;
   padding: 40px;
   display: flex;
@@ -776,7 +775,7 @@ a {
 
 /* ================== CONSULTATION FORM ================== */
 .consultation-section {
-  background: linear-gradient(135deg, #0A2A43 0%, #1a4d6f 100%);
+  background: linear-gradient(135deg, #0066B3 0%, #004d87 100%);
   color: var(--white);
   position: relative;
   overflow: hidden;
@@ -972,13 +971,15 @@ a {
 .team-image {
   position: relative;
   overflow: hidden;
-  height: 400px;
+  height: 450px;
+  background: var(--light);
 }
 
 .team-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center top;
   transition: var(--transition);
 }
 
@@ -1062,7 +1063,7 @@ a {
 
 /* ================== LOCATION FOCUS ================== */
 .location-focus-section {
-  background: linear-gradient(135deg, var(--primary), #1a4d6f);
+  background: linear-gradient(135deg, #0066B3, #004d87);
   color: var(--white);
   padding: 80px 0;
 }
@@ -1160,7 +1161,7 @@ a {
 .map-icon {
   width: 70px;
   height: 70px;
-  background: linear-gradient(135deg, var(--primary), #1a4d6f);
+  background: linear-gradient(135deg, #0066B3, #004d87);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1253,12 +1254,12 @@ a {
 }
 
 .contact-card--whatsapp {
-  background: rgba(46,125,50,0.1);
-  border-color: var(--secondary);
+  background: rgba(37,211,102,0.1);
+  border-color: #25D366;
 }
 
 .contact-card--whatsapp:hover {
-  background: rgba(46,125,50,0.2);
+  background: rgba(37,211,102,0.2);
 }
 
 .contact-card-icon {
@@ -1279,11 +1280,11 @@ a {
 }
 
 .contact-card--whatsapp .contact-card-icon {
-  background: var(--secondary);
+  background: #25D366;
 }
 
 .contact-card--whatsapp:hover .contact-card-icon {
-  background: #1f6a2a;
+  background: #1da851;
 }
 
 .contact-card-icon i {
@@ -1381,10 +1382,10 @@ a {
 }
 
 .footer-logo {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  border: 2px solid var(--accent);
+  width: 150px;
+  height: auto;
+  object-fit: contain;
+  border: none;
 }
 
 .footer-about h3 {
@@ -1480,7 +1481,7 @@ a {
   bottom: 25px;
   width: 60px;
   height: 60px;
-  background: var(--secondary);
+  background: #25D366;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1494,15 +1495,15 @@ a {
 
 .waFloat:hover {
   transform: scale(1.1);
-  background: #1f6a2a;
+  background: #1da851;
 }
 
 @keyframes pulse {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(46,125,50,0.7);
+    box-shadow: 0 0 0 0 rgba(37,211,102,0.7);
   }
   50% {
-    box-shadow: 0 0 0 15px rgba(46,125,50,0);
+    box-shadow: 0 0 0 15px rgba(37,211,102,0);
   }
 }
 
@@ -1611,6 +1612,10 @@ a {
 }
 
 @media (max-width: 480px) {
+  .brand__logo {
+    width: 90px;
+  }
+
   .brand__text {
     display: none;
   }
