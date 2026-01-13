@@ -6,7 +6,8 @@
 :root {
   --primary: #0066B3;
   --secondary: #909090;
-  --accent: #0066B3;
+  --accent: #FF6B35;
+  --gold: #FFB81C;
   --dark: #1a1a1a;
   --light: #f8f9fa;
   --white: #ffffff;
@@ -179,7 +180,7 @@ a {
 
 /* ================== HERO SECTION ================== */
 .hero {
-  background: linear-gradient(135deg, #0066B3 0%, #004d87 100%);
+  background: linear-gradient(135deg, #0066B3 0%, #003d6b 50%, #001f3f 100%);
   position: relative;
   padding: 80px 0;
   color: var(--white);
@@ -220,7 +221,7 @@ a {
 }
 
 .hero__badge i {
-  color: var(--accent);
+  color: var(--gold);
   font-size: 18px;
 }
 
@@ -241,7 +242,7 @@ a {
 }
 
 .hero__subtitle strong {
-  color: var(--accent);
+  color: var(--gold);
 }
 
 .hero__features {
@@ -263,7 +264,7 @@ a {
 }
 
 .feature-item i {
-  color: var(--accent);
+  color: var(--gold);
   font-size: 18px;
 }
 
@@ -289,12 +290,12 @@ a {
 }
 
 .btn--primary {
-  background: var(--accent);
+  background: var(--gold);
   color: var(--dark);
 }
 
 .btn--primary:hover {
-  background: #c29d2f;
+  background: #ff9500;
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
 }
@@ -360,7 +361,7 @@ a {
 
 .hero__image-overlay i {
   font-size: 32px;
-  color: var(--accent);
+  color: var(--gold);
   margin-bottom: 10px;
 }
 
@@ -398,7 +399,7 @@ a {
 
 .stat-card i {
   font-size: 28px;
-  color: var(--accent);
+  color: var(--gold);
   margin-bottom: 10px;
 }
 
@@ -440,7 +441,7 @@ a {
 
 .section-label--light {
   background: rgba(255,255,255,0.15);
-  color: var(--accent);
+  color: var(--gold);
 }
 
 .section-header h2 {
@@ -499,7 +500,7 @@ a {
 }
 
 .location-card:hover .location-icon {
-  background: linear-gradient(135deg, var(--accent), #c29d2f);
+  background: linear-gradient(135deg, var(--accent), #ff8c42);
   transform: scale(1.1);
 }
 
@@ -742,7 +743,7 @@ a {
 }
 
 .news-subscribe {
-  background: linear-gradient(135deg, #0066B3, #004d87);
+  background: linear-gradient(135deg, #0066B3 0%, #003d6b 50%, #001f3f 100%);
   border-radius: 16px;
   padding: 40px;
   display: flex;
@@ -760,7 +761,7 @@ a {
 
 .subscribe-content i {
   font-size: 48px;
-  color: var(--accent);
+  color: var(--gold);
 }
 
 .subscribe-content h3 {
@@ -775,7 +776,7 @@ a {
 
 /* ================== CONSULTATION FORM ================== */
 .consultation-section {
-  background: linear-gradient(135deg, #0066B3 0%, #004d87 100%);
+  background: linear-gradient(135deg, #0066B3 0%, #003d6b 50%, #001f3f 100%);
   color: var(--white);
   position: relative;
   overflow: hidden;
@@ -828,7 +829,7 @@ a {
 
 .consultation-feature i {
   font-size: 28px;
-  color: var(--accent);
+  color: var(--gold);
   flex-shrink: 0;
   margin-top: 5px;
 }
@@ -893,7 +894,7 @@ a {
 
 .form-group label i {
   font-size: 14px;
-  color: var(--accent);
+  color: var(--gold);
 }
 
 .form-group input,
@@ -914,7 +915,7 @@ a {
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--accent);
+  border-color: var(--gold);
   background: rgba(255,255,255,0.15);
 }
 
@@ -1063,7 +1064,7 @@ a {
 
 /* ================== LOCATION FOCUS ================== */
 .location-focus-section {
-  background: linear-gradient(135deg, #0066B3, #004d87);
+  background: linear-gradient(135deg, #0066B3 0%, #003d6b 50%, #001f3f 100%);
   color: var(--white);
   padding: 80px 0;
 }
@@ -1103,18 +1104,18 @@ a {
 }
 
 .area-tag i {
-  color: var(--accent);
+  color: var(--gold);
   font-size: 14px;
 }
 
 .area-tag--premium {
-  background: var(--accent);
+  background: var(--gold);
   color: var(--dark);
-  border-color: var(--accent);
+  border-color: var(--gold);
 }
 
 .area-tag--premium:hover {
-  background: #c29d2f;
+  background: var(--accent);
 }
 
 /* ================== MAPS SECTION ================== */
@@ -1149,7 +1150,7 @@ a {
   position: absolute;
   top: 15px;
   right: 15px;
-  background: var(--accent);
+  background: var(--gold);
   color: var(--dark);
   padding: 6px 12px;
   border-radius: 20px;
@@ -1171,7 +1172,7 @@ a {
 }
 
 .map-download-card:hover .map-icon {
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent), #ff8c42);
   transform: scale(1.1) rotate(5deg);
 }
 
@@ -1207,12 +1208,12 @@ a {
 }
 
 .map-download-card:hover .download-btn {
-  background: var(--accent);
+  background: var(--gold);
   color: var(--dark);
 }
 
 .map-download-card--premium {
-  border-color: var(--accent);
+  border-color: var(--gold);
   background: linear-gradient(135deg, #fffef7, #ffffff);
 }
 
@@ -1265,7 +1266,7 @@ a {
 .contact-card-icon {
   width: 70px;
   height: 70px;
-  background: var(--accent);
+  background: var(--gold);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1276,7 +1277,7 @@ a {
 
 .contact-card:hover .contact-card-icon {
   transform: scale(1.1);
-  background: #c29d2f;
+  background: var(--accent);
 }
 
 .contact-card--whatsapp .contact-card-icon {
@@ -1309,7 +1310,7 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--accent);
+  color: var(--gold);
   font-weight: 600;
   font-size: 14px;
   transition: var(--transition);
@@ -1333,7 +1334,7 @@ a {
 
 .office-hours i {
   font-size: 28px;
-  color: var(--accent);
+  color: var(--gold);
 }
 
 /* ================== SEO CONTENT ================== */
@@ -1416,7 +1417,7 @@ a {
 }
 
 .footer-social a:hover {
-  background: var(--accent);
+  background: var(--gold);
   transform: translateY(-3px);
 }
 
@@ -1445,7 +1446,7 @@ a {
 
 .footer-links a:hover,
 .footer-services a:hover {
-  color: var(--accent);
+  color: var(--gold);
   padding-left: 5px;
 }
 
@@ -1458,7 +1459,7 @@ a {
 }
 
 .footer-contact i {
-  color: var(--accent);
+  color: var(--gold);
   margin-top: 3px;
 }
 
