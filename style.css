@@ -1400,7 +1400,7 @@ a {
 
 /* ================== FOOTER ================== */
 .footer {
-  background: linear-gradient(135deg, #0066B3 0%, #003d6b 50%, #001f3f 100%);
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
   color: rgba(255,255,255,0.9);
   padding: 60px 0 30px;
 }
