@@ -168,14 +168,23 @@ if (waFloat) {
   }
 }
 
-/* ==================== PHASE 2: PARALLAX + DEPTH LAYERS ==================== */
+/* ==================== PHASE 2: PARALLAX + DEPTH LAYERS (Enhanced) ==================== */
 (function() {
   // Check for reduced motion preference
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReducedMotion) return;
 
-  // Create glow blobs for hero section
+  // Target sections for depth parallax
   const hero = document.querySelector('.hero');
+  const hsvpSection = document.querySelector('.hsvp-section');
+  const locationSection = document.querySelector('.location-focus-section');
+
+  // Add depth parallax class to enable will-change on pseudo-elements
+  [hero, hsvpSection, locationSection].forEach(section => {
+    if (section) section.classList.add('depth-parallax-active');
+  });
+
+  // Create additional glow blobs for hero section (extra depth)
   if (hero) {
     const blob1 = document.createElement('div');
     blob1.className = 'hero__glow-blob hero__glow-blob--1 parallax-layer';
@@ -198,17 +207,59 @@ if (waFloat) {
   let ticking = false;
   const parallaxLayers = document.querySelectorAll('.parallax-layer');
 
+  // Parallax speed configs for CSS pseudo-elements (capped movement)
+  const depthConfig = {
+    hero: { before: 0.015, after: 0.025, maxOffset: 60 },
+    hsvp: { before: 0.012, after: 0.018, maxOffset: 40 },
+    location: { before: 0.01, after: 0.015, maxOffset: 30 }
+  };
+
   function updateParallax() {
     const scrollY = window.pageYOffset;
 
+    // Update JS-created parallax layers (glow blobs)
     parallaxLayers.forEach(layer => {
       const speed = parseFloat(layer.dataset.speed) || 0.02;
-      const yPos = scrollY * speed;
+      const yPos = Math.min(scrollY * speed, 80); // Cap at 80px max
       layer.style.transform = `translateY(${yPos}px)`;
     });
 
+    // Update CSS pseudo-element parallax via CSS custom properties
+    // Hero section
+    if (hero) {
+      const heroRect = hero.getBoundingClientRect();
+      const heroProgress = Math.max(0, -heroRect.top) / (heroRect.height || 1);
+      const heroBeforeY = Math.min(heroProgress * depthConfig.hero.before * 1000, depthConfig.hero.maxOffset);
+      const heroAfterY = Math.min(heroProgress * depthConfig.hero.after * 1000, depthConfig.hero.maxOffset);
+      hero.style.setProperty('--depth-before-y', `${heroBeforeY}px`);
+      hero.style.setProperty('--depth-after-y', `${heroAfterY}px`);
+    }
+
+    // HSVP section
+    if (hsvpSection) {
+      const hsvpRect = hsvpSection.getBoundingClientRect();
+      const hsvpProgress = Math.max(0, Math.min(1, (window.innerHeight - hsvpRect.top) / (window.innerHeight + hsvpRect.height)));
+      const hsvpBeforeY = hsvpProgress * depthConfig.hsvp.before * 1000;
+      const hsvpAfterY = hsvpProgress * depthConfig.hsvp.after * 1000;
+      hsvpSection.style.setProperty('--depth-before-y', `${Math.min(hsvpBeforeY, depthConfig.hsvp.maxOffset)}px`);
+      hsvpSection.style.setProperty('--depth-after-y', `${Math.min(hsvpAfterY, depthConfig.hsvp.maxOffset)}px`);
+    }
+
+    // Location section
+    if (locationSection) {
+      const locRect = locationSection.getBoundingClientRect();
+      const locProgress = Math.max(0, Math.min(1, (window.innerHeight - locRect.top) / (window.innerHeight + locRect.height)));
+      const locBeforeY = locProgress * depthConfig.location.before * 1000;
+      const locAfterY = locProgress * depthConfig.location.after * 1000;
+      locationSection.style.setProperty('--depth-before-y', `${Math.min(locBeforeY, depthConfig.location.maxOffset)}px`);
+      locationSection.style.setProperty('--depth-after-y', `${Math.min(locAfterY, depthConfig.location.maxOffset)}px`);
+    }
+
     ticking = false;
   }
+
+  // Initial call
+  updateParallax();
 
   window.addEventListener('scroll', () => {
     if (!ticking) {
