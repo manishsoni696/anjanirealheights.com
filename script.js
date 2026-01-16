@@ -168,6 +168,101 @@ if (waFloat) {
   }
 }
 
+/* ==================== PHASE 2: PARALLAX + DEPTH LAYERS ==================== */
+(function() {
+  // Check for reduced motion preference
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
+  // Create glow blobs for hero section
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    const blob1 = document.createElement('div');
+    blob1.className = 'hero__glow-blob hero__glow-blob--1 parallax-layer';
+    blob1.dataset.speed = '0.03';
+
+    const blob2 = document.createElement('div');
+    blob2.className = 'hero__glow-blob hero__glow-blob--2 parallax-layer';
+    blob2.dataset.speed = '0.02';
+
+    const blob3 = document.createElement('div');
+    blob3.className = 'hero__glow-blob hero__glow-blob--3 parallax-layer';
+    blob3.dataset.speed = '0.04';
+
+    hero.appendChild(blob1);
+    hero.appendChild(blob2);
+    hero.appendChild(blob3);
+  }
+
+  // Parallax scroll handler with requestAnimationFrame throttle
+  let ticking = false;
+  const parallaxLayers = document.querySelectorAll('.parallax-layer');
+
+  function updateParallax() {
+    const scrollY = window.pageYOffset;
+
+    parallaxLayers.forEach(layer => {
+      const speed = parseFloat(layer.dataset.speed) || 0.02;
+      const yPos = scrollY * speed;
+      layer.style.transform = `translateY(${yPos}px)`;
+    });
+
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }, { passive: true });
+})();
+
+/* ==================== PHASE 2: SECTION DIVIDERS ==================== */
+(function() {
+  // Add section dividers between major sections
+  const sections = document.querySelectorAll('.hsvp-section, .services-section, .why-section, .news-section, .team-section, .maps-section');
+
+  sections.forEach(section => {
+    const divider = document.createElement('div');
+    divider.className = 'section-divider fade-in-element';
+    section.insertBefore(divider, section.firstChild);
+  });
+
+  // Observe dividers for animation
+  const dividers = document.querySelectorAll('.section-divider');
+  const dividerObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          dividerObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  dividers.forEach(d => dividerObserver.observe(d));
+})();
+
+/* ==================== PHASE 2: FORM LOADING STATE ==================== */
+(function() {
+  const form = document.getElementById('enquiryForm');
+  const submitBtn = form?.querySelector('.btn--large');
+
+  if (form && submitBtn) {
+    form.addEventListener('submit', () => {
+      submitBtn.classList.add('loading');
+
+      // Remove loading after 5s max (fallback)
+      setTimeout(() => {
+        submitBtn.classList.remove('loading');
+      }, 5000);
+    });
+  }
+})()
+
 /* WhatsApp fallback builder */
 const waFallback = document.getElementById("waFallback");
 function buildWAFromForm() {

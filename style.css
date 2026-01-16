@@ -1891,3 +1891,460 @@ a {
     border-bottom: none;
   }
 }
+
+/* ================== PHASE 2 UX ENHANCEMENTS ================== */
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .parallax-layer,
+  .hero__glow-blob {
+    transform: none !important;
+  }
+}
+
+/* ===== STEP A: Parallax + Depth Layers ===== */
+
+/* Hero parallax depth layers */
+.hero {
+  position: relative;
+}
+
+.hero__glow-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+.hero__glow-blob--1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 184, 28, 0.5) 0%, transparent 70%);
+  top: -100px;
+  right: -100px;
+}
+
+.hero__glow-blob--2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0, 102, 179, 0.4) 0%, transparent 70%);
+  bottom: -50px;
+  left: -50px;
+}
+
+.hero__glow-blob--3 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 107, 53, 0.3) 0%, transparent 70%);
+  top: 50%;
+  left: 30%;
+}
+
+/* Parallax layer base styles */
+.parallax-layer {
+  will-change: transform;
+  transition: transform 0.15s ease-out;
+}
+
+/* Section divider with gradient line */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--primary) 20%, var(--accent) 50%, var(--primary) 80%, transparent 100%);
+  opacity: 0;
+  transform: scaleX(0);
+  transition: opacity 0.6s ease-out, transform 0.8s ease-out;
+}
+
+.section-divider.visible {
+  opacity: 0.6;
+  transform: scaleX(1);
+}
+
+/* ===== STEP B: Glassmorphism Upgrade ===== */
+
+/* Enhanced form wrapper with better glass effect */
+.form-wrapper {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glass shimmer effect */
+.form-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Enhanced input focus states */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--gold);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 0 0 4px rgba(255, 184, 28, 0.15),
+    0 4px 16px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+/* Input error state (visual only) */
+.form-group input:invalid:not(:placeholder-shown),
+.form-group input.error {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.15);
+}
+
+/* Low-end device fallback for glass */
+@supports not (backdrop-filter: blur(24px)) {
+  .form-wrapper {
+    background: rgba(0, 61, 107, 0.95);
+  }
+}
+
+/* ===== STEP C: Mobile Snap-Scroll Carousel ===== */
+
+@media (max-width: 768px) {
+  /* Location cards carousel */
+  .location-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 20px;
+    padding: 10px 20px 20px;
+    margin: 0 -20px;
+    scrollbar-width: none;
+  }
+
+  .location-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .location-card {
+    flex: 0 0 280px;
+    scroll-snap-align: center;
+  }
+
+  /* Services cards carousel */
+  .services-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 20px;
+    padding: 10px 20px 20px;
+    margin: 0 -20px;
+    scrollbar-width: none;
+  }
+
+  .services-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .service-card {
+    flex: 0 0 300px;
+    scroll-snap-align: center;
+  }
+
+  /* News cards carousel */
+  .news-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 20px;
+    padding: 10px 20px 20px;
+    margin: 0 -20px;
+    scrollbar-width: none;
+  }
+
+  .news-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .news-card {
+    flex: 0 0 300px;
+    scroll-snap-align: center;
+  }
+
+  /* Maps cards carousel */
+  .maps-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 20px;
+    padding: 10px 20px 20px;
+    margin: 0 -20px;
+    scrollbar-width: none;
+  }
+
+  .maps-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .map-download-card {
+    flex: 0 0 260px;
+    scroll-snap-align: center;
+  }
+
+  /* Edge fade hints for carousels */
+  .hsvp-section .container,
+  .services-section .container,
+  .news-section .container,
+  .maps-section .container {
+    position: relative;
+  }
+
+  .hsvp-section .container::after,
+  .services-section .container::after,
+  .news-section .container::after,
+  .maps-section .container::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    background: linear-gradient(to left, var(--light) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .services-section .container::after {
+    background: linear-gradient(to left, var(--white) 0%, transparent 100%);
+  }
+
+  .news-section .container::after {
+    background: linear-gradient(to left, var(--white) 0%, transparent 100%);
+  }
+}
+
+/* ===== STEP D: Micro-interactions ===== */
+
+/* Button press/tap feedback */
+.btn:active,
+.chip:active {
+  transform: scale(0.96) translateY(1px);
+  transition: transform 0.1s ease;
+}
+
+.btn--whatsapp:active {
+  transform: scale(0.96) translateY(1px);
+  box-shadow: 0 2px 12px rgba(37, 211, 102, 0.4);
+}
+
+/* Nav link hover underline animation */
+.nav a {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transform: translateX(-101%);
+  transition: transform 0.3s ease;
+}
+
+.nav a:hover::after {
+  transform: translateX(0);
+}
+
+/* Card icon pulse on hover */
+.location-icon,
+.service-icon,
+.why-icon,
+.map-icon,
+.contact-card-icon {
+  position: relative;
+}
+
+.location-card:hover .location-icon::after,
+.service-card:hover .service-icon::after,
+.map-download-card:hover .map-icon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  background: inherit;
+  opacity: 0;
+  animation: iconPulse 0.6s ease-out;
+}
+
+@keyframes iconPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Image hover shimmer effect */
+.hero__image-card::after,
+.team-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.hero__image-card:hover::after,
+.team-card:hover .team-image::after {
+  left: 150%;
+}
+
+/* Footer link icon animation */
+.footer-links a:hover::before,
+.footer-services a:hover::before {
+  animation: arrowBounce 0.4s ease;
+}
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+
+/* Section label entrance animation */
+.section-label {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-label::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: labelShine 3s ease-in-out infinite;
+}
+
+@keyframes labelShine {
+  0%, 100% { left: -100%; }
+  50% { left: 100%; }
+}
+
+/* Smooth scroll indicator for carousels (mobile) */
+@media (max-width: 768px) {
+  .scroll-hint {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 16px;
+  }
+
+  .scroll-hint-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: all 0.3s ease;
+  }
+
+  .scroll-hint-dot.active {
+    background: var(--primary);
+    transform: scale(1.2);
+  }
+}
+
+/* Submit button loading state */
+.btn--large.loading {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.btn--large.loading::after {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid transparent;
+  border-top-color: var(--dark);
+  border-radius: 50%;
+  margin-left: 10px;
+  animation: btnSpin 0.8s linear infinite;
+}
+
+@keyframes btnSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Focus visible for keyboard navigation */
+.btn:focus-visible,
+.chip:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* CLS-safe image placeholders */
+.hero__image-card img,
+.team-image img {
+  background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+}
