@@ -51,19 +51,122 @@ if (mobileMenuToggle && nav) {
 
 /* ==================== HEADER SCROLL EFFECT ==================== */
 const header = document.querySelector(".header");
-let lastScroll = 0;
 
 window.addEventListener("scroll", () => {
   const currentScroll = window.pageYOffset;
 
-  if (currentScroll > 100) {
-    header.style.boxShadow = "0 4px 16px rgba(0,0,0,0.1)";
+  if (currentScroll > 50) {
+    header.classList.add("scrolled");
   } else {
-    header.style.boxShadow = "0 2px 8px rgba(0,0,0,0.08)";
+    header.classList.remove("scrolled");
+  }
+});
+
+/* ==================== SCROLL-TRIGGERED FADE-IN ANIMATIONS ==================== */
+const fadeInElements = document.querySelectorAll(
+  ".section-header, .location-card, .service-card, .why-card, .news-card, .team-card, .map-download-card, .contact-card, .consultation-feature, .stat-card, .hero__badge, .hero__image-card, .news-subscribe, .areas-showcase, .seo-content"
+);
+
+fadeInElements.forEach((el) => {
+  el.classList.add("fade-in-element");
+});
+
+const fadeInObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        fadeInObserver.unobserve(entry.target);
+      }
+    });
+  },
+  {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+  }
+);
+
+fadeInElements.forEach((el) => {
+  fadeInObserver.observe(el);
+});
+
+/* ==================== STATS COUNTER ANIMATION ==================== */
+function animateCounter(element, target, duration = 1000) {
+  const startTime = performance.now();
+  const startValue = 0;
+
+  function updateCounter(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+
+    // Ease-out function
+    const easeOut = 1 - Math.pow(1 - progress, 3);
+    const currentValue = Math.floor(startValue + (target - startValue) * easeOut);
+
+    // Check if target contains "+" suffix
+    const suffix = element.dataset.suffix || "";
+    element.textContent = currentValue + suffix;
+
+    if (progress < 1) {
+      requestAnimationFrame(updateCounter);
+    } else {
+      element.textContent = target + suffix;
+    }
   }
 
-  lastScroll = currentScroll;
+  requestAnimationFrame(updateCounter);
+}
+
+const statCards = document.querySelectorAll(".stat-card h4");
+const statsObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const text = el.textContent.trim();
+
+        // Extract number and suffix
+        const match = text.match(/^(\d+)(.*)$/);
+        if (match) {
+          const number = parseInt(match[1], 10);
+          const suffix = match[2] || "";
+          el.dataset.suffix = suffix;
+          animateCounter(el, number, 1000);
+        }
+
+        statsObserver.unobserve(el);
+      }
+    });
+  },
+  {
+    threshold: 0.5
+  }
+);
+
+statCards.forEach((el) => {
+  statsObserver.observe(el);
 });
+
+/* ==================== FLOATING WHATSAPP TOOLTIP ==================== */
+const waFloat = document.querySelector(".waFloat");
+if (waFloat) {
+  // Create tooltip element
+  const tooltip = document.createElement("span");
+  tooltip.className = "wa-tooltip";
+  tooltip.textContent = "Need help?";
+  waFloat.appendChild(tooltip);
+
+  // Mobile: Show tooltip for 3 seconds on page load
+  const isMobile = window.innerWidth <= 768;
+  if (isMobile) {
+    setTimeout(() => {
+      tooltip.classList.add("mobile-show");
+      setTimeout(() => {
+        tooltip.classList.remove("mobile-show");
+      }, 3000);
+    }, 1500);
+  }
+}
 
 /* WhatsApp fallback builder */
 const waFallback = document.getElementById("waFallback");
