@@ -351,8 +351,8 @@ a {
 
 .btn--large:hover {
   background: #ff9500;
-  box-shadow: 0 8px 28px rgba(255,184,28,0.6);
-  transform: translateY(-3px);
+  box-shadow: 0 6px 24px rgba(255,184,28,0.5);
+  transform: translateY(-2px);
 }
 
 .hero__visual {
@@ -2156,6 +2156,16 @@ a {
   transition: all 0.3s ease;
 }
 
+/* Input hover state (desktop only) */
+@media (hover: hover) {
+  .form-group input:hover,
+  .form-group select:hover,
+  .form-group textarea:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
@@ -2201,8 +2211,9 @@ a {
   }
 
   .location-card {
-    flex: 0 0 280px;
-    scroll-snap-align: center;
+    flex: 0 0 85vw;
+    max-width: 320px;
+    scroll-snap-align: start;
   }
 
   /* Services cards carousel */
@@ -2222,8 +2233,9 @@ a {
   }
 
   .service-card {
-    flex: 0 0 300px;
-    scroll-snap-align: center;
+    flex: 0 0 85vw;
+    max-width: 340px;
+    scroll-snap-align: start;
   }
 
   /* News cards carousel */
@@ -2243,8 +2255,9 @@ a {
   }
 
   .news-card {
-    flex: 0 0 300px;
-    scroll-snap-align: center;
+    flex: 0 0 85vw;
+    max-width: 340px;
+    scroll-snap-align: start;
   }
 
   /* Maps cards carousel */
@@ -2264,8 +2277,9 @@ a {
   }
 
   .map-download-card {
-    flex: 0 0 260px;
-    scroll-snap-align: center;
+    flex: 0 0 80vw;
+    max-width: 300px;
+    scroll-snap-align: start;
   }
 
   /* Edge fade hints for carousels */
