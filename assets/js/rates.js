@@ -13,7 +13,26 @@
 
   var fmt = new Intl.NumberFormat("en-IN");
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
-  function norm(s) { return String(s).toLowerCase().replace(/sector|sec\.?/g, "sec").replace(/[^a-z0-9]+/g, " ").trim(); }
+  function norm(s) {
+    return String(s).toLowerCase()
+      .replace(/\b([a-z])\.(?=[a-z]\b)/g, "$1").replace(/\b([a-z])\.(?=[a-z]\b)/g, "$1") // H.B.C -> hbc, M.C. -> mc
+      .replace(/sector|sec\.?/g, "sec").replace(/[^a-z0-9]+/g, " ").trim();
+  }
+  // The 2026-27 list was converted from Hindi, so some names are spelt oddly.
+  // These extra words are only used for searching (the table still shows the original text).
+  var ALIAS = {
+    madal: "model", isteta: "estate", sivil: "civil", haspatal: "hospital", markei: "market", chauk: "chowk",
+    bajar: "bazar bazaar", eksatenshan: "extension", "echa0bi0si0": "hbc", "ema0si0": "mc", "di0si0": "dc",
+    pharm: "farm", ghoda: "horse", nyu: "new", relave: "railway", indastriyal: "industrial", tahasil: "tehsil",
+    javahar: "jawahar", kalej: "college", aanid: "anand", aary: "arya", sinh: "singh", vidhut: "vidyut", baik: "bank",
+    dabada: "dabra", isteshan: "station", laeen: "line", ror: "road", mandi: "mandi market", satarod: "satrod",
+    collony: "colony", "kollony": "colony", "colloni": "colony", nalgar: "nagar", olutside: "outside", withein: "within", police: "pla"
+  };
+  function addAlias(text) {
+    var extra = [];
+    text.toLowerCase().split(/[^a-z0-9]+/).forEach(function (w) { if (ALIAS[w]) extra.push(ALIAS[w]); });
+    return extra.length ? text + " " + extra.join(" ") : text;
+  }
   // "sound-alike" form so that spelling variants match (Model Town = Madal Taun, Chowk = Chauk)
   function skel(s) {
     return norm(s).split(" ").map(function (w) {
@@ -22,9 +41,10 @@
       return w.charAt(0) + w.slice(1).replace(/[aeiouy]/g, "");
     }).join(" ");
   }
-  function match(r, words, swords) {
-    return words.every(function (w) { return r._k.indexOf(w) !== -1; }) ||
-           swords.every(function (w) { return r._s.indexOf(w) !== -1; });
+  // every query word must be the START of some word in the row (so "sec" will not match inside other words)
+  function hasAll(text, words) {
+    var t = " " + text;
+    return words.every(function (w) { return t.indexOf(" " + w) !== -1; });
   }
 
   function load(year) {
@@ -33,7 +53,7 @@
     return fetch("/assets/collector-rates/" + year + ".json").then(function (r) { return r.json(); }).then(function (d) {
       d.tables.forEach(function (t) {
         var g = "";
-        t.rows.forEach(function (r) { if (!Array.isArray(r)) { g = r.g; return; } r._k = norm(r.join(" ") + " " + g); r._s = skel(r.join(" ") + " " + g); });
+        t.rows.forEach(function (r) { if (!Array.isArray(r)) { g = r.g; return; } var txt = addAlias(r.join(" ") + " " + g); r._k = norm(txt); r._s = skel(txt); });
       });
       cache[year] = d; return d;
     });
@@ -46,22 +66,38 @@
 
   function render() {
     var t = data.tables[sheet];
-    var q = norm(input.value), words = q ? q.split(" ") : [], swords = q ? skel(q).split(" ") : [];
+    var q = norm(input.value), words = q ? q.split(" ") : [];
+    var swords = q ? skel(q).split(" ").filter(function (w) { return w.length >= 3 || /\d/.test(w); }) : [];
     thead.innerHTML = "<tr>" + t.cols.map(function (c) { return "<th>" + esc(c) + "</th>"; }).join("") + "</tr>";
-    var out = [], n = 0, total = 0, pendingGroup = null;
-    for (var i = 0; i < t.rows.length; i++) {
-      var r = t.rows[i];
-      if (!Array.isArray(r)) { pendingGroup = r.g; continue; }
-      if (words.length && !match(r, words, swords)) continue;
-      total++;
-      if (n >= limit) continue;
-      if (pendingGroup) { out.push('<tr class="grp"><td colspan="' + t.cols.length + '">' + esc(pendingGroup) + "</td></tr>"); pendingGroup = null; }
-      out.push("<tr>" + r.map(cell).join("") + "</tr>");
-      n++;
+
+    function collect(test) {
+      var out = [], n = 0, total = 0, pendingGroup = null;
+      for (var i = 0; i < t.rows.length; i++) {
+        var r = t.rows[i];
+        if (!Array.isArray(r)) { pendingGroup = r.g; continue; }
+        if (test && !test(r)) continue;
+        total++;
+        if (n >= limit) continue;
+        if (pendingGroup) { out.push('<tr class="grp"><td colspan="' + t.cols.length + '">' + esc(pendingGroup) + "</td></tr>"); pendingGroup = null; }
+        out.push("<tr>" + r.map(cell).join("") + "</tr>");
+        n++;
+      }
+      return { out: out, total: total };
     }
-    tbody.innerHTML = out.join("") || '<tr><td colspan="' + t.cols.length + '" style="text-align:center;padding:24px">No matching area found in this list. Try another spelling or check the other years / sheets.</td></tr>';
-    meta.textContent = (words.length ? total + " matching rows" : total + " rows") + " • " + (t.unit || "");
-    more.hidden = total <= limit;
+
+    var res, fuzzy = false;
+    if (!words.length) res = collect(null);
+    else {
+      res = collect(function (r) { return hasAll(r._k, words); });
+      // nothing found with exact spelling -> try similar spellings (Model Town = Madal Town)
+      if (res.total === 0 && swords.length) {
+        res = collect(function (r) { return hasAll(r._s, swords); });
+        fuzzy = res.total > 0;
+      }
+    }
+    tbody.innerHTML = res.out.join("") || '<tr><td colspan="' + t.cols.length + '" style="text-align:center;padding:24px">No matching area found in this list. Try another spelling, or check the other years / sheets.</td></tr>';
+    meta.textContent = (words.length ? res.total + " matching rows" + (fuzzy ? " (similar spellings)" : "") : res.total + " rows") + " • " + (t.unit || "");
+    more.hidden = res.total <= limit;
   }
 
   function renderSheets() {
