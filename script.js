@@ -212,128 +212,161 @@ if (waFloat) {
   dividers.forEach(d => dividerObserver.observe(d));
 })();
 
-/* ==================== PHASE 2: FORM LOADING STATE ==================== */
-(function() {
-  const form = document.getElementById('enquiryForm');
-  const submitBtn = form?.querySelector('.btn--large');
+/* ==================== OFFICE PHOTO SLIDER ==================== */
+(function () {
+  const slider = document.getElementById("officeSlider");
+  if (!slider) return;
+  const slides = slider.querySelectorAll(".office-slide");
+  const dots = slider.querySelectorAll(".office-dot");
+  if (slides.length < 2) return;
+  let i = 0, timer = null;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  if (form && submitBtn) {
-    form.addEventListener('submit', () => {
-      submitBtn.classList.add('loading');
-
-      // Remove loading after 5s max (fallback)
-      setTimeout(() => {
-        submitBtn.classList.remove('loading');
-      }, 5000);
-    });
+  function show(n) {
+    slides[i].classList.remove("is-active"); dots[i] && dots[i].classList.remove("is-active");
+    i = (n + slides.length) % slides.length;
+    slides[i].classList.add("is-active"); dots[i] && dots[i].classList.add("is-active");
   }
-})()
+  function start() { if (!reduce && !timer) timer = setInterval(() => show(i + 1), 4500); }
+  function stop() { clearInterval(timer); timer = null; }
 
-/* WhatsApp fallback builder */
-const waFallback = document.getElementById("waFallback");
-function buildWAFromForm() {
-  const name = (document.getElementById("name")?.value || "").trim();
-  const phone = (document.getElementById("phone")?.value || "").trim();
-  const req = (document.getElementById("req")?.value || "").trim();
-  const msg = (document.getElementById("msg")?.value || "").trim();
+  dots.forEach((d, n) => d.addEventListener("click", () => { stop(); show(n); start(); }));
+  document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()));
+  // start after the page has finished loading so the first photo shows fast
+  if (document.readyState === "complete") start(); else window.addEventListener("load", start);
+})();
 
-  const text =
-`Hello Anjani Real Heights,
-Name: ${name}
-Phone: ${phone}
-Requirement: ${req}
-Message: ${msg || "-"}`;
-
-  return `https://wa.me/${PHONE_WA}?text=${encodeURIComponent(text)}`;
-}
-if (waFallback) {
-  waFallback.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.open(buildWAFromForm(), "_blank", "noopener");
-  });
-}
-
-/* EmailJS config - Updated with New Key & Service */
+/* ==================== ENQUIRY FORM (Buy / Sell) ====================
+   1) Sends to our Cloudflare function  /api/enquiry  (saves lead + emails us)
+   2) If that is not available, falls back to EmailJS
+   3) If that also fails, opens WhatsApp with the details filled in        */
 const EMAILJS_CONFIG = {
   SERVICE_ID: "service_3bwp5a8",
   TEMPLATE_ID: "template_794vzd3",
   PUBLIC_KEY: "XhBKoKaRw3FZ02AeW"
 };
 
-function setStatus(el, text, ok=true) {
-  if (!el) return;
-  el.textContent = text;
-  el.style.color = ok ? "rgba(255,255,255,.92)" : "#ffb4b4";
-}
-function emailJsNotConfigured() {
-  return (
-    !EMAILJS_CONFIG.SERVICE_ID || EMAILJS_CONFIG.SERVICE_ID.includes("PASTE_") ||
-    !EMAILJS_CONFIG.TEMPLATE_ID || EMAILJS_CONFIG.TEMPLATE_ID.includes("PASTE_") ||
-    !EMAILJS_CONFIG.PUBLIC_KEY || EMAILJS_CONFIG.PUBLIC_KEY.includes("PASTE_")
-  );
-}
-
 const enquiryForm = document.getElementById("enquiryForm");
 const formStatus = document.getElementById("formStatus");
+const formLoadedAt = Date.now();
+
+function setStatus(text, ok) {
+  if (!formStatus) return;
+  formStatus.textContent = text;
+  formStatus.classList.toggle("is-ok", !!ok);
+  formStatus.classList.toggle("is-err", !ok);
+}
+
+function getLead() {
+  const f = enquiryForm;
+  const v = (name) => (f.elements[name] ? String(f.elements[name].value || "").trim() : "");
+  return {
+    type: v("leadType") || "buy",
+    name: v("name"),
+    phone: v("phone").replace(/\D/g, "").slice(-10),
+    email: v("email"),
+    propertyType: v("propertyType"),
+    area: v("area"),
+    size: v("size"),
+    budget: v("budget"),
+    message: v("message"),
+    website: v("website"),
+    elapsedMs: Date.now() - formLoadedAt,
+    page: location.href
+  };
+}
+
+function leadText(l) {
+  const sell = l.type === "sell";
+  return [
+    sell ? "SELL enquiry – Anjani Real Heights website" : "BUY enquiry – Anjani Real Heights website",
+    "Name: " + l.name,
+    "Phone: " + l.phone,
+    "Property type: " + (l.propertyType || "-"),
+    (sell ? "Location / Plot: " : "Preferred area: ") + (l.area || "-"),
+    "Size: " + (l.size || "-"),
+    (sell ? "Expected price: " : "Budget: ") + (l.budget || "-"),
+    "Email: " + (l.email || "-"),
+    "Message: " + (l.message || "-")
+  ].join("\n");
+}
+
+function waLink(l) {
+  return "https://wa.me/" + PHONE_WA + "?text=" + encodeURIComponent(leadText(l));
+}
+
+async function sendViaEmailJS(l) {
+  await loadEmailJS();
+  emailjs.init({ publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
+  await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, {
+    to_email: EMAIL_TO,
+    name: l.name,
+    phone: l.phone,
+    email: l.email || "Not provided",
+    requirement: (l.type === "sell" ? "SELL – " : "BUY – ") + (l.propertyType || ""),
+    message: leadText(l),
+    source: "Website Lead (anjanirealheights.com)",
+    timestamp: new Date().toLocaleString("en-IN")
+  });
+}
 
 if (enquiryForm) {
+  // Change labels when switching Buy / Sell
+  enquiryForm.querySelectorAll('input[name="leadType"]').forEach((r) =>
+    r.addEventListener("change", () => {
+      const mode = enquiryForm.elements.leadType.value === "sell" ? "sell" : "buy";
+      enquiryForm.querySelectorAll("[data-buy]").forEach((el) => {
+        const t = el.getAttribute("data-" + mode);
+        if (el.tagName === "INPUT") el.placeholder = t; else el.textContent = t;
+      });
+    })
+  );
+
   enquiryForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const l = getLead();
+    const btn = enquiryForm.querySelector('button[type="submit"]');
+    enquiryForm.querySelectorAll(".is-invalid").forEach((el) => el.classList.remove("is-invalid"));
 
-    const name = document.getElementById("name").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const email = document.getElementById("email") ? document.getElementById("email").value.trim() : "";
-    const requirement = document.getElementById("req").value;
-    const message = document.getElementById("msg").value.trim();
-
-    if (!/^\d{10}$/.test(phone)) {
-      setStatus(formStatus, "Please enter a valid 10-digit phone number.", false);
+    const bad = [];
+    if (l.name.length < 2) bad.push("name");
+    if (!/^[6-9]\d{9}$/.test(l.phone)) bad.push("phone");
+    if (!l.propertyType) bad.push("ptype");
+    if (bad.length) {
+      bad.forEach((id) => document.getElementById(id) && document.getElementById(id).classList.add("is-invalid"));
+      setStatus("Please fill your name, a valid 10-digit mobile number and the property type.", false);
       return;
     }
+    if (l.website) return; // spam bot
 
-    if (emailJsNotConfigured()) {
-      setStatus(formStatus, "Email not configured yet. Opening WhatsApp…", true);
-      window.open(buildWAFromForm(), "_blank", "noopener");
-      return;
-    }
+    btn.disabled = true;
+    btn.classList.add("loading");
+    setStatus("Sending your enquiry…", true);
 
+    let sent = false;
     try {
-      await loadEmailJS();
-      emailjs.init({ publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
-      setStatus(formStatus, "Sending enquiry…", true);
+      const res = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(l)
+      });
+      sent = res.ok;
+    } catch (err) { sent = false; }
 
-      const payload = {
-        to_email: EMAIL_TO,
-        name,
-        phone,
-        email: email || "Not provided",
-        requirement,
-        message: message || "-",
-        source: "Website Lead (anjanirealheights.com)",
-        timestamp: new Date().toLocaleString("en-IN")
-      };
+    if (!sent) {
+      try { await sendViaEmailJS(l); sent = true; } catch (err) { sent = false; }
+    }
 
-      // 1. Lead Notification (Aapke liye)
-      await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, payload);
+    btn.disabled = false;
+    btn.classList.remove("loading");
 
-      // 2. Auto Reply (Customer ke liye) - Template ID: template_tlucta5
-      if (email && email !== "") {
-        const replyPayload = {
-          name: name,
-          requirement: requirement,
-          phone: phone,
-          email: email
-        };
-        await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, "template_tlucta5", replyPayload);
-      }
-
-      setStatus(formStatus, "✅ Thank you! We have received your enquiry. The Anjani Real Heights team will contact you shortly.", true);
+    if (sent) {
+      setStatus("✅ Thank you, " + l.name.split(" ")[0] + "! We have received your enquiry and will call you soon.", true);
       enquiryForm.reset();
-
-    } catch (err) {
-      console.error("EmailJS Error:", err);
-      setStatus(formStatus, "❌ Email failed. Opening WhatsApp…", false);
-      window.open(buildWAFromForm(), "_blank", "noopener");
+      enquiryForm.elements.leadType[0].dispatchEvent(new Event("change"));
+    } else {
+      setStatus("Could not send right now. Opening WhatsApp so you can send it directly…", false);
+      window.open(waLink(l), "_blank", "noopener");
     }
   });
 }

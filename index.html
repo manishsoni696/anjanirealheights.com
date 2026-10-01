@@ -29,7 +29,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css?v=9" />
+<link rel="stylesheet" href="style.css?v=11" />
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -162,12 +162,21 @@
 
     <div class="hero__visual">
       <div class="hero__image-card">
-        <img src="assets/img/office-front.webp" alt="Anjani Real Heights office front, SSB 318-319, Pocket-A, Sector 14, Hisar" width="1000" height="948" fetchpriority="high" style="object-position:center 0%">
-        <div class="hero__image-overlay">
+        <div class="office-slider" id="officeSlider" aria-roledescription="carousel" aria-label="Photos of our office">
+          <img class="office-slide is-active" src="assets/img/office-front.webp" alt="Anjani Real Heights office building, SSB 318-319, Pocket-A, Sector 14, Hisar" width="1000" height="948" fetchpriority="high" style="object-position:center 0%">
+          <img class="office-slide" src="assets/img/office-main.webp" alt="Anjani Real Heights main office interior" width="1000" height="750" loading="lazy" decoding="async">
+          <img class="office-slide" src="assets/img/office-cabin.webp" alt="Anjani Real Heights meeting cabin" width="1000" height="750" loading="lazy" decoding="async">
+          <div class="office-dots" role="tablist">
+            <button type="button" class="office-dot is-active" aria-label="Office front"></button>
+            <button type="button" class="office-dot" aria-label="Main office"></button>
+            <button type="button" class="office-dot" aria-label="Meeting cabin"></button>
+          </div>
+        </div>
+        <a class="hero__image-overlay" href="https://maps.app.goo.gl/Te12FfNkZ991FwXN7" target="_blank" rel="noopener">
           <i class="ico" aria-hidden="true"><svg><use href="#i-building"/></svg></i>
           <h3>Visit Our Office</h3>
-          <p>SSB 318-319, Sector 14, Hisar</p>
-        </div>
+          <p>SSB 318-319, Pocket-A, Sector 14, Hisar &nbsp;·&nbsp; Get directions</p>
+        </a>
       </div>
 
       <div class="hero__stats">
@@ -467,49 +476,86 @@
 
       <div class="form-wrapper">
         <div class="form-header">
-          <h3>Request Free Consultation</h3>
-          <p>Fill the form below and we'll get back to you shortly</p>
+          <h3>Tell Us What You Need</h3>
+          <p>Fill in a few details and we will call you back.</p>
         </div>
 
-        <form id="enquiryForm" class="enquiry-form">
-          <div class="form-group">
-            <label for="name"><i class="ico" aria-hidden="true"><svg><use href="#i-user"/></svg></i> Full Name</label>
-            <input type="text" id="name" placeholder="Enter your name" required>
+        <form id="enquiryForm" class="enquiry-form" novalidate>
+          <div class="lead-toggle" role="radiogroup" aria-label="I want to">
+            <label class="lead-toggle__opt">
+              <input type="radio" name="leadType" value="buy" checked>
+              <span><i class="ico" aria-hidden="true"><svg><use href="#i-home"/></svg></i> I want to Buy</span>
+            </label>
+            <label class="lead-toggle__opt">
+              <input type="radio" name="leadType" value="sell">
+              <span><i class="ico" aria-hidden="true"><svg><use href="#i-handshake"/></svg></i> I want to Sell</span>
+            </label>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required maxlength="80">
+            </div>
+            <div class="form-group">
+              <label for="phone">Mobile Number *</label>
+              <input type="tel" id="phone" name="phone" placeholder="10-digit mobile" autocomplete="tel-national" inputmode="numeric" required pattern="[6-9][0-9]{9}" maxlength="10">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="ptype">Property Type *</label>
+              <select id="ptype" name="propertyType" required>
+                <option value="">Select type</option>
+                <option>Residential Plot</option>
+                <option>House / Kothi</option>
+                <option>Flat / Floor</option>
+                <option>Shop / SCO / Booth</option>
+                <option>Commercial Plot</option>
+                <option>Agricultural Land</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="area" data-buy="Preferred Sector / Area" data-sell="Property Location / Plot No.">Preferred Sector / Area</label>
+              <input type="text" id="area" name="area" placeholder="e.g. Sector 14, Model Town" maxlength="120" data-buy="e.g. Sector 14, Model Town" data-sell="e.g. Plot 123, Sector 33">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="size">Size</label>
+              <input type="text" id="size" name="size" placeholder="e.g. 10 marla, 200 sq. yd." maxlength="60">
+            </div>
+            <div class="form-group">
+              <label for="budget" data-buy="Budget" data-sell="Expected Price">Budget</label>
+              <input type="text" id="budget" name="budget" placeholder="e.g. 60–80 lakh" maxlength="60" data-buy="e.g. 60–80 lakh" data-sell="e.g. 1.2 crore">
+            </div>
           </div>
 
           <div class="form-group">
-            <label for="phone"><i class="ico" aria-hidden="true"><svg><use href="#i-phone"/></svg></i> Phone Number</label>
-            <input type="tel" id="phone" placeholder="10-digit mobile number" required pattern="[0-9]{10}">
+            <label for="email">Email (optional)</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" maxlength="120">
           </div>
 
           <div class="form-group">
-            <label for="email"><i class="ico" aria-hidden="true"><svg><use href="#i-envelope"/></svg></i> Email (Optional)</label>
-            <input type="email" id="email" placeholder="your.email@example.com">
+            <label for="msg">Anything else? (optional)</label>
+            <textarea id="msg" name="message" rows="3" maxlength="1000" placeholder="Corner plot, park facing, timeline, etc."></textarea>
           </div>
 
-          <div class="form-group">
-            <label for="req"><i class="ico" aria-hidden="true"><svg><use href="#i-list"/></svg></i> I'm Looking For</label>
-            <select id="req" required>
-              <option value="">Select your requirement</option>
-              <option>Residential Plot</option>
-              <option>Commercial Plot</option>
-              <option>House/Villa</option>
-              <option>Property Resale</option>
-              <option>Investment Guidance</option>
-              <option>Property Verification</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="msg"><i class="ico" aria-hidden="true"><svg><use href="#i-comment"/></svg></i> Additional Details (Optional)</label>
-            <textarea id="msg" placeholder="Tell us about your specific requirements..." rows="4"></textarea>
+          <div class="hp-field" aria-hidden="true">
+            <label for="website">Leave this empty</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
           </div>
 
           <button type="submit" class="btn btn--primary btn--large">
-            <i class="ico" aria-hidden="true"><svg><use href="#i-paper-plane"/></svg></i> Submit Enquiry
+            <i class="ico" aria-hidden="true"><svg><use href="#i-paper-plane"/></svg></i> <span class="btn-label">Send Enquiry</span>
           </button>
 
-          <div id="formStatus" class="form-status"></div>
+          <p class="form-alt">Prefer WhatsApp? <a href="https://wa.me/919306766244?text=Hi%20Anjani%20Real%20Heights%2C%20I%20have%20a%20property%20enquiry." target="_blank" rel="noopener">Chat on 93067 66244</a></p>
+
+          <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
         </form>
       </div>
     </div>
@@ -845,7 +891,7 @@
 <a class="waFloat" href="https://wa.me/919306766244" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
 
 
-<script src="script.js?v=1.4" defer></script>
+<script src="script.js?v=1.5" defer></script>
 
 </body>
 </html>
