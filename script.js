@@ -1,13 +1,29 @@
 /* =========================
 FILE: script.js - Anjani Real Heights
 ========================= */
-const PHONE_WA = "919050040129";
+const PHONE_WA = "919306766244";
+
+/* EmailJS is loaded only when someone submits the form (keeps page fast) */
+function loadEmailJS() {
+  if (window.emailjs) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const sc = document.createElement("script");
+    sc.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+    sc.onload = resolve;
+    sc.onerror = reject;
+    document.head.appendChild(sc);
+  });
+}
 const EMAIL_TO = "contact@anjanirealheights.com";
 
 // Set current year in footer
 document.getElementById("year").textContent = new Date().getFullYear();
 
 /* ==================== MOBILE MENU ==================== */
+function setMenuIcon(icon, isOpen) {
+  const use = icon.querySelector("use");
+  if (use) use.setAttribute("href", isOpen ? "#i-times" : "#i-bars");
+}
 const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
 const nav = document.querySelector(".nav");
 
@@ -20,7 +36,7 @@ if (mobileMenuToggle && nav) {
     // Change icon
     const icon = mobileMenuToggle.querySelector("i");
     if (icon) {
-      icon.className = isOpen ? "fas fa-times" : "fas fa-bars";
+      setMenuIcon(icon, isOpen);
     }
   });
 
@@ -31,7 +47,7 @@ if (mobileMenuToggle && nav) {
       mobileMenuToggle.setAttribute("aria-expanded", "false");
       const icon = mobileMenuToggle.querySelector("i");
       if (icon) {
-        icon.className = "fas fa-bars";
+        setMenuIcon(icon, false);
       }
     });
   });
@@ -43,7 +59,7 @@ if (mobileMenuToggle && nav) {
       mobileMenuToggle.setAttribute("aria-expanded", "false");
       const icon = mobileMenuToggle.querySelector("i");
       if (icon) {
-        icon.className = "fas fa-bars";
+        setMenuIcon(icon, false);
       }
     }
   });
@@ -168,107 +184,6 @@ if (waFloat) {
   }
 }
 
-/* ==================== PHASE 2: PARALLAX + DEPTH LAYERS (Enhanced) ==================== */
-(function() {
-  // Check for reduced motion preference
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReducedMotion) return;
-
-  // Target sections for depth parallax
-  const hero = document.querySelector('.hero');
-  const hsvpSection = document.querySelector('.hsvp-section');
-  const locationSection = document.querySelector('.location-focus-section');
-
-  // Add depth parallax class to enable will-change on pseudo-elements
-  [hero, hsvpSection, locationSection].forEach(section => {
-    if (section) section.classList.add('depth-parallax-active');
-  });
-
-  // Create additional glow blobs for hero section (extra depth)
-  if (hero) {
-    const blob1 = document.createElement('div');
-    blob1.className = 'hero__glow-blob hero__glow-blob--1 parallax-layer';
-    blob1.dataset.speed = '0.03';
-
-    const blob2 = document.createElement('div');
-    blob2.className = 'hero__glow-blob hero__glow-blob--2 parallax-layer';
-    blob2.dataset.speed = '0.02';
-
-    const blob3 = document.createElement('div');
-    blob3.className = 'hero__glow-blob hero__glow-blob--3 parallax-layer';
-    blob3.dataset.speed = '0.04';
-
-    hero.appendChild(blob1);
-    hero.appendChild(blob2);
-    hero.appendChild(blob3);
-  }
-
-  // Parallax scroll handler with requestAnimationFrame throttle
-  let ticking = false;
-  const parallaxLayers = document.querySelectorAll('.parallax-layer');
-
-  // Parallax speed configs for CSS pseudo-elements (capped movement)
-  const depthConfig = {
-    hero: { before: 0.015, after: 0.025, maxOffset: 60 },
-    hsvp: { before: 0.012, after: 0.018, maxOffset: 40 },
-    location: { before: 0.01, after: 0.015, maxOffset: 30 }
-  };
-
-  function updateParallax() {
-    const scrollY = window.pageYOffset;
-
-    // Update JS-created parallax layers (glow blobs)
-    parallaxLayers.forEach(layer => {
-      const speed = parseFloat(layer.dataset.speed) || 0.02;
-      const yPos = Math.min(scrollY * speed, 80); // Cap at 80px max
-      layer.style.transform = `translateY(${yPos}px)`;
-    });
-
-    // Update CSS pseudo-element parallax via CSS custom properties
-    // Hero section
-    if (hero) {
-      const heroRect = hero.getBoundingClientRect();
-      const heroProgress = Math.max(0, -heroRect.top) / (heroRect.height || 1);
-      const heroBeforeY = Math.min(heroProgress * depthConfig.hero.before * 1000, depthConfig.hero.maxOffset);
-      const heroAfterY = Math.min(heroProgress * depthConfig.hero.after * 1000, depthConfig.hero.maxOffset);
-      hero.style.setProperty('--depth-before-y', `${heroBeforeY}px`);
-      hero.style.setProperty('--depth-after-y', `${heroAfterY}px`);
-    }
-
-    // HSVP section
-    if (hsvpSection) {
-      const hsvpRect = hsvpSection.getBoundingClientRect();
-      const hsvpProgress = Math.max(0, Math.min(1, (window.innerHeight - hsvpRect.top) / (window.innerHeight + hsvpRect.height)));
-      const hsvpBeforeY = hsvpProgress * depthConfig.hsvp.before * 1000;
-      const hsvpAfterY = hsvpProgress * depthConfig.hsvp.after * 1000;
-      hsvpSection.style.setProperty('--depth-before-y', `${Math.min(hsvpBeforeY, depthConfig.hsvp.maxOffset)}px`);
-      hsvpSection.style.setProperty('--depth-after-y', `${Math.min(hsvpAfterY, depthConfig.hsvp.maxOffset)}px`);
-    }
-
-    // Location section
-    if (locationSection) {
-      const locRect = locationSection.getBoundingClientRect();
-      const locProgress = Math.max(0, Math.min(1, (window.innerHeight - locRect.top) / (window.innerHeight + locRect.height)));
-      const locBeforeY = locProgress * depthConfig.location.before * 1000;
-      const locAfterY = locProgress * depthConfig.location.after * 1000;
-      locationSection.style.setProperty('--depth-before-y', `${Math.min(locBeforeY, depthConfig.location.maxOffset)}px`);
-      locationSection.style.setProperty('--depth-after-y', `${Math.min(locAfterY, depthConfig.location.maxOffset)}px`);
-    }
-
-    ticking = false;
-  }
-
-  // Initial call
-  updateParallax();
-
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(updateParallax);
-      ticking = true;
-    }
-  }, { passive: true });
-})();
-
 /* ==================== PHASE 2: SECTION DIVIDERS ==================== */
 (function() {
   // Add section dividers between major sections
@@ -383,6 +298,7 @@ if (enquiryForm) {
     }
 
     try {
+      await loadEmailJS();
       emailjs.init({ publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
       setStatus(formStatus, "Sending enquiry…", true);
 
@@ -411,7 +327,7 @@ if (enquiryForm) {
         await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, "template_tlucta5", replyPayload);
       }
 
-      setStatus(formStatus, "✅ Shukriya! Aapki enquiry humein mil gayi hai. Anjani Real Heights ki team jald hi aapse sampark karegi.", true);
+      setStatus(formStatus, "✅ Thank you! We have received your enquiry. The Anjani Real Heights team will contact you shortly.", true);
       enquiryForm.reset();
 
     } catch (err) {

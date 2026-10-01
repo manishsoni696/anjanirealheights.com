@@ -2500,3 +2500,45 @@ a:focus-visible {
 .team-image img {
   background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
 }
+
+/* ===== Step 2: hero photo caption + team phone ===== */
+.hero__image-overlay {
+  background: linear-gradient(to top, rgba(8, 28, 52, 0.97) 0%, rgba(8, 28, 52, 0.94) 72%, rgba(8, 28, 52, 0) 100%);
+  padding: 22px 24px 18px;
+}
+.team-experience a { color: inherit; font-weight: 600; }
+.team-experience a:hover { color: var(--primary); }
+
+/* ===== Step 3: inline SVG icons (replaces Font Awesome) ===== */
+i.ico {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+  line-height: 1;
+  vertical-align: -0.125em;
+}
+i.ico svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  display: block;
+}
+
+/* ===== Step 3: compact mobile header ===== */
+@media (max-width: 768px) {
+  .header__inner { padding: 10px 0; gap: 10px; flex-wrap: nowrap; }
+  .brand { flex: 1 1 auto; min-width: 0; }
+  .brand__logo { width: 84px; }
+  .header__cta { flex-direction: row; width: auto; gap: 8px; order: 2; }
+  .header__cta .chip {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    justify-content: center;
+    font-size: 0;
+    border-radius: 50%;
+  }
+  .header__cta .chip i.ico { font-size: 18px; }
+  .mobile-menu-toggle { order: 3; }
+}
