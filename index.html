@@ -30,6 +30,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css?v=11" />
+<link rel="stylesheet" href="/assets/css/pages.css?v=1">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -97,8 +98,8 @@
 
     <nav class="nav">
       <a href="#services"><i class="ico" aria-hidden="true"><svg><use href="#i-handshake"/></svg></i> Services</a>
-      <a href="#why"><i class="ico" aria-hidden="true"><svg><use href="#i-star"/></svg></i> Why Us</a>
-      <a href="#news"><i class="ico" aria-hidden="true"><svg><use href="#i-newspaper"/></svg></i> Updates</a>
+      <a href="/maps/"><i class="ico" aria-hidden="true"><svg><use href="/assets/icons.svg#i-map"/></svg></i> Maps</a>
+      <a href="/collector-rates/"><i class="ico" aria-hidden="true"><svg><use href="/assets/icons.svg#i-table"/></svg></i> Collector Rates</a>
       <a href="#owners"><i class="ico" aria-hidden="true"><svg><use href="#i-users"/></svg></i> Team</a>
       <a href="#contact"><i class="ico" aria-hidden="true"><svg><use href="#i-envelope"/></svg></i> Contact</a>
     </nav>
@@ -666,77 +667,35 @@
   </div>
 </section>
 
-<!-- MAPS DOWNLOAD -->
+<!-- MAPS & COLLECTOR RATES -->
 <section id="maps" class="section maps-section">
   <div class="container">
     <div class="section-header">
-      <span class="section-label">Resources</span>
-      <h2>Download Property Maps</h2>
-      <p class="section-intro">Access detailed sector maps and property layouts for informed decision-making.</p>
+      <span class="section-label">Free Resources</span>
+      <h2>Hisar Maps &amp; Collector Rates</h2>
+      <p class="section-intro">Zoom into 52 sector, colony and commercial layout maps of Hisar, and look up collector rates by area and year.</p>
     </div>
-
-    <div class="maps-grid">
-      <a href="assets/maps/sector-14.pdf" download="Sector_14_Map_Anjani" class="map-download-card">
-        <div class="map-icon">
-          <i class="ico" aria-hidden="true"><svg><use href="#i-file-pdf"/></svg></i>
+    <div class="res-grid">
+      <a class="res-card" href="/maps/">
+        <div class="res-card__icon"><i class="ico" aria-hidden="true"><svg><use href="/assets/icons.svg#i-map"/></svg></i></div>
+        <div>
+          <h3>Hisar Maps (52)</h3>
+          <p>HSVP sectors, commercial pockets and colonies – view in HD, zoom to plot level, download or share.</p>
+          <span>Open maps →</span>
         </div>
-        <h3>Sector 14 Map</h3>
-        <p>Detailed layout of Sector 14 properties</p>
-        <span class="download-btn">
-          <i class="ico" aria-hidden="true"><svg><use href="#i-download"/></svg></i> Download PDF
-        </span>
       </a>
-
-      <a href="assets/maps/sector-33.pdf" download="Sector_33_Map_Anjani" class="map-download-card">
-        <div class="map-icon">
-          <i class="ico" aria-hidden="true"><svg><use href="#i-file-pdf"/></svg></i>
+      <a class="res-card" href="/collector-rates/">
+        <div class="res-card__icon"><i class="ico" aria-hidden="true"><svg><use href="/assets/icons.svg#i-table"/></svg></i></div>
+        <div>
+          <h3>Collector Rates</h3>
+          <p>Search Hisar collector rates by area for 2026-27, 2023-24, 2014-15 and 2001-02, with PDF downloads.</p>
+          <span>Check rates →</span>
         </div>
-        <h3>Sector 33 Map</h3>
-        <p>Complete Sector 33 property guide</p>
-        <span class="download-btn">
-          <i class="ico" aria-hidden="true"><svg><use href="#i-download"/></svg></i> Download PDF
-        </span>
-      </a>
-
-      <a href="assets/maps/sector-13.pdf" download="Sector_13_Map_Anjani" class="map-download-card">
-        <div class="map-icon">
-          <i class="ico" aria-hidden="true"><svg><use href="#i-file-pdf"/></svg></i>
-        </div>
-        <h3>Sector 13 Map</h3>
-        <p>Sector 13 plots and layout details</p>
-        <span class="download-btn">
-          <i class="ico" aria-hidden="true"><svg><use href="#i-download"/></svg></i> Download PDF
-        </span>
-      </a>
-
-      <a href="assets/maps/sector-9-11.pdf" download="Sector_9-11_Map_Anjani" class="map-download-card">
-        <div class="map-icon">
-          <i class="ico" aria-hidden="true"><svg><use href="#i-file-pdf"/></svg></i>
-        </div>
-        <h3>Sector 9-11 Map</h3>
-        <p>Combined map for Sectors 9, 10, 11</p>
-        <span class="download-btn">
-          <i class="ico" aria-hidden="true"><svg><use href="#i-download"/></svg></i> Download PDF
-        </span>
-      </a>
-
-      <a href="assets/maps/hisar-full-map.pdf" download="Hisar_Full_Map_Book_Anjani" class="map-download-card map-download-card--premium">
-        <div class="premium-badge">
-          <i class="ico" aria-hidden="true"><svg><use href="#i-star"/></svg></i> Premium
-        </div>
-        <div class="map-icon">
-          <i class="ico" aria-hidden="true"><svg><use href="#i-book"/></svg></i>
-        </div>
-        <h3>Complete Hisar Map Book</h3>
-        <p>Comprehensive property map guide</p>
-        <span class="download-btn">
-          <i class="ico" aria-hidden="true"><svg><use href="#i-download"/></svg></i> Download Full Book
-        </span>
       </a>
     </div>
   </div>
 </section>
-  
+
 <!-- CONTACT SECTION -->
 <section id="contact" class="section contact-section">
   <div class="container">
@@ -858,8 +817,8 @@
       <div class="footer-links">
         <h4>Quick Links</h4>
         <a href="#services">Services</a>
-        <a href="#why">Why Choose Us</a>
-        <a href="#news">Latest Updates</a>
+        <a href="/maps/">Hisar Maps</a>
+        <a href="/collector-rates/">Collector Rates</a>
         <a href="#owners">Our Team</a>
         <a href="#contact">Contact</a>
       </div>
@@ -870,7 +829,7 @@
         <a href="#services">HSVP Property Consultancy</a>
         <a href="#services">Registry Documentation</a>
         <a href="#services">Property Verification</a>
-        <a href="#maps">Download Maps</a>
+        <a href="/maps/">Hisar Maps</a>
       </div>
 
       <div class="footer-contact">
