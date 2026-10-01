@@ -2594,3 +2594,6 @@ a.hero__image-overlay:hover h3 { text-decoration: underline; }
   .hero__stats .stat-card p { font-size: 11px; }
   .hero__stats .stat-card i.ico { font-size: 20px; }
 }
+
+/* News section: cards removed, only WhatsApp alerts box remains */
+.news-section .container::after{display:none}
