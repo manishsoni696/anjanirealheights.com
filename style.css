@@ -2597,3 +2597,12 @@ a.hero__image-overlay:hover h3 { text-decoration: underline; }
 
 /* News section: cards removed, only WhatsApp alerts box remains */
 .news-section .container::after{display:none}
+
+/* Services & Why Us: 4 cards each */
+@media (min-width: 1025px) {
+  .services-grid, .why-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .service-card { padding: 30px 22px; }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .services-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
+}
