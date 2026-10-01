@@ -365,7 +365,7 @@ if (enquiryForm) {
       enquiryForm.reset();
       enquiryForm.elements.leadType[0].dispatchEvent(new Event("change"));
     } else {
-      setStatus("Could not send right now. Opening WhatsApp so you can send it directly…", false);
+      setStatus("Almost done! WhatsApp is opening with your details – just tap Send to complete your enquiry.", true);
       window.open(waLink(l), "_blank", "noopener");
     }
   });
